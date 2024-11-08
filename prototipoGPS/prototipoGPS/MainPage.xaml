@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="prototipoGPS.MainPage">
+
+    <AbsoluteLayout>
+
+        <Image Source="Fondo_1.png" 
+       Aspect="AspectFill"
+       AbsoluteLayout.LayoutFlags="All"
+       AbsoluteLayout.LayoutBounds="0, 0, 1, 1" />
+    
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="100">
+
+        <!-- Logo de la app -->
+        <Image Source="Logo.png" HeightRequest="200" WidthRequest="100"
+                Margin="-180,-60,-180,0"/>
+        <!-- Título de la app -->
+        <Label Text="TRACE"
+               FontSize="50"
+               FontAttributes="Bold"
+               TextColor="#FF4081"
+               HorizontalOptions="Center"
+               Margin="-180,-80,-180,530"/>
+            
+
+        <!-- Botón de continuar -->
+        <Button Text="Continuar con Trace"
+        BackgroundColor="#d8d8d8"
+        TextColor="Black"
+        FontAttributes="Bold"
+        CornerRadius="20"
+        HeightRequest="50"
+        Margin="0,-240,0,20"
+        ImageSource="logo_small.png"
+        Clicked="OnContinueClicked" />
+        <!-- Evento Clicked -->
+
+        <Button Text="Registrarse"
+        BackgroundColor="#a4efc4"
+        TextColor="Black"
+        FontAttributes="Bold"
+        CornerRadius="20"
+        HeightRequest="50"
+        Margin="0,0,0,20"
+        Clicked="OnRegisterClicked" />
+        <!-- Evento Clicked -->
+        
+        <!-- Texto de créditos -->
+            <StackLayout VerticalOptions="End" HorizontalOptions="Center">
+                <Label Text="by ITQ" FontSize="12" FontAttributes ="Bold" TextColor="Black" HorizontalOptions="Center" />
+            <Label Text="Tec. Andy Logacho" FontSize="12" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" />
+            </StackLayout>
+
+    </StackLayout>
+    </AbsoluteLayout>
+
+</ContentPage>

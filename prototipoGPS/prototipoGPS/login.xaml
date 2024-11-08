@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:prototipoGPS"
+             x:Class="prototipoGPS.login">
+    <Grid>
+        <!-- Fondo verde -->
+        <BoxView Color="#a4efc4" />
+
+        <!-- Parte blanca con logo y título -->
+        <Frame BackgroundColor="White"  
+               CornerRadius="150"  
+               Padding="0"  
+               HasShadow="False"  
+               VerticalOptions="Start"  
+               HeightRequest="420"   
+               Margin="-30,-120,-30,0">
+            <StackLayout Padding="0">
+                <!-- Logo de la app -->
+                <Image Source="Logo.png" HeightRequest="320" WidthRequest="100"  
+                       Margin="0,130,0,0" />
+
+                <!-- Título de la app -->
+                <Label Text="TRACE"  
+                       FontSize="50"  
+                       FontAttributes="Bold"  
+                       TextColor="#FF4081"  
+                       HorizontalOptions="Center"  
+                       Margin="0,-140,0,0"/>
+            </StackLayout>
+        </Frame>
+
+        <!-- Resto del formulario fuera del frame -->
+        <StackLayout Padding="20" Margin="0,250,0,0">
+            <Label Text="Iniciar Sesión"  
+                FontSize="30"   
+                HorizontalOptions="Center"   
+                VerticalOptions="Start"  
+                FontAttributes="Bold"   
+                TextColor="Black"   
+                Margin="0,60,0,20"/>
+
+            <Label Text="CORREO" FontSize="16" TextColor="Black"  FontAttributes="Bold" Margin="40,0,0,0"/>
+            <Frame BackgroundColor="#d8d8d8"   
+                CornerRadius="20"  
+                Padding="5"  
+                HasShadow="False"   
+                Margin="40,0,40,0">
+                <Grid>
+                    <Entry x:Name="CorreoEntry" 
+                           BackgroundColor="Transparent" 
+                           TextColor="Black" />
+                    <!-- Placeholder con Binding -->
+                    <Label Text="Introduzca un correo"
+                           TextColor="Black"
+                           IsVisible="{Binding Source={x:Reference CorreoEntry}, Path=Text.Length, Converter={StaticResource InverseBoolConverter}}"
+                           VerticalOptions="Center"
+                           Margin="10,0" />
+                </Grid>
+            </Frame>
+
+            <Label Text="CONTRASEÑA" FontSize="16" TextColor="Black"  FontAttributes="Bold" Margin="40,10,0,0" />
+            <Frame BackgroundColor="#d8d8d8"   
+                CornerRadius="20"  
+                Padding="5"  
+                HasShadow="False"   
+                Margin="40,0,40,0">
+                <Grid>
+                    <Entry x:Name="ContrasenaEntry" 
+                           BackgroundColor="Transparent" 
+                           TextColor="Black"
+                           IsPassword="True" />
+                    <!-- Placeholder con Binding -->
+                    <Label Text="Introduzca una contraseña"
+                           TextColor="Black"
+                           IsVisible="{Binding Source={x:Reference ContrasenaEntry}, Path=Text.Length, Converter={StaticResource InverseBoolConverter}}"
+                           VerticalOptions="Center"
+                           Margin="10,0" />
+                </Grid>
+            </Frame>
+
+            <Button Text="Iniciar sesión"  
+                    BackgroundColor="Black"  
+                    TextColor="White"  
+                    FontAttributes="Bold"  
+                    CornerRadius="20"  
+                    HeightRequest="50"  
+                    Margin="60,20,60,-50" 
+                    Clicked="OnLoginClicked"/>
+
+            <Label Text="¿Olvidaste tu contraseña?"  
+                   FontSize="16"  
+                   TextColor="Black"  
+                   Margin="0,60,0,0"
+                   HorizontalOptions="Center"  
+                   VerticalOptions="End"
+                  />
+
+        </StackLayout>
+    </Grid>
+</ContentPage>

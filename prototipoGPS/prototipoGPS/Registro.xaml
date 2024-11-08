@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="prototipoGPS.Registro">
+
+    <AbsoluteLayout>
+        <Image Source="Fondo_2.png"   
+               Aspect="AspectFill"  
+               AbsoluteLayout.LayoutFlags="All"  
+               AbsoluteLayout.LayoutBounds="0, 0, 1, 1" />
+
+        <StackLayout Padding="20" VerticalOptions="CenterAndExpand"  
+                     AbsoluteLayout.LayoutFlags="All"  
+                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1">
+
+            <Label Text="Crear una nueva cuenta"  
+                   FontSize="30"   
+                   HorizontalOptions="Center"   
+                   VerticalOptions="Start"  
+                   FontAttributes="Bold"   
+                   TextColor="Black"   
+                   Margin="-180,-100,-180,30"/>
+
+            <StackLayout Margin="20, 0,0,80">
+                <Label Text="NOMBRE" FontSize="18" TextColor="Black"  FontAttributes="Bold"/>
+                <Frame BackgroundColor="#d8d8d8"  
+                        CornerRadius="20"  
+                        Padding="5"  
+                        HasShadow="False"   
+                        Margin="0,5,40,10">
+                    <Entry x:Name="NombreEntry" 
+                           Placeholder="Ingrese su nombre" 
+                           BackgroundColor="Transparent"  
+                           TextColor="Black" 
+                           PlaceholderColor="Black" />
+                    <!-- Placeholder color negro -->
+                </Frame>
+
+                <Label Text="CORREO" FontSize="18" TextColor="Black"  FontAttributes="Bold"/>
+                <Frame BackgroundColor="#d8d8d8"   
+                       CornerRadius="20"  
+                       Padding="5"  
+                       HasShadow="False"   
+                       Margin="0,5,40,10">
+                    <Entry x:Name="CorreoEntry" 
+                           Placeholder="Introduzca un correo" 
+                           BackgroundColor="Transparent" 
+                           TextColor="Black" 
+                           PlaceholderColor="Black" />
+                    <!-- Placeholder color negro -->
+                </Frame>
+
+                <Label Text="CONTRASEÑA" FontSize="18" TextColor="Black"  FontAttributes="Bold"/>
+                <Frame BackgroundColor="#d8d8d8"   
+                       CornerRadius="20"  
+                       Padding="5"  
+                       HasShadow="False"   
+                       Margin="0,5,40,10">
+                    <Entry x:Name="ContrasenaEntry" 
+                           Placeholder="Introduzca una contraseña" 
+                           BackgroundColor="Transparent"  
+                           TextColor="Black" 
+                           IsPassword="True" 
+                           PlaceholderColor="Black" />
+                    <!-- Placeholder color negro -->
+                </Frame>
+
+            </StackLayout>
+
+            <!-- Selección de fecha de nacimiento -->
+            <Label Text="FECHA DE NACIMIENTO" FontSize="18" TextColor="Black"  FontAttributes="Bold" Margin="20, -70, 0, 0" />
+
+            <StackLayout Orientation="Horizontal" Margin="20,5,100,10">
+
+                <!-- apartado año -->
+                <Frame BackgroundColor="#d8d8d8" CornerRadius="20" Padding="5" HasShadow="False" WidthRequest="100" Margin="0,0,0,0">
+                    <Picker x:Name="AnioPicker" Title="Año" BackgroundColor="Transparent"  TextColor="Black">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:Int32}">
+                                <x:Int32>1990</x:Int32>
+                                <x:Int32>1991</x:Int32>
+                                <x:Int32>1992</x:Int32>
+                                <x:Int32>1993</x:Int32>
+                                <x:Int32>1994</x:Int32>
+                                <x:Int32>1995</x:Int32>
+                                <x:Int32>1996</x:Int32>
+                                <x:Int32>1997</x:Int32>
+                                <x:Int32>1998</x:Int32>
+                                <x:Int32>1999</x:Int32>
+                                <x:Int32>2000</x:Int32>
+                                <x:Int32>2001</x:Int32>
+                                <x:Int32>2002</x:Int32>
+                                <x:Int32>2003</x:Int32>
+                                <x:Int32>2004</x:Int32>
+                                <x:Int32>2005</x:Int32>
+                                <x:Int32>2006</x:Int32>
+                                <x:Int32>2007</x:Int32>
+                                <x:Int32>2008</x:Int32>
+                                <x:Int32>2009</x:Int32>
+                                <x:Int32>20010</x:Int32>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </Frame>
+
+
+                <!-- apartado mes -->
+                <Frame BackgroundColor="#d8d8d8" CornerRadius="20" Padding="5" HasShadow="False" WidthRequest="100" Margin="20,0,50,0">
+                    <Picker x:Name="MesPicker" Title="Mes" BackgroundColor="Transparent"  TextColor="Black">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Enero</x:String>
+                                <x:String>Febrero</x:String>
+                                <x:String>Marzo</x:String>
+                                <x:String>Abril</x:String>
+                                <x:String>Mayo</x:String>
+                                <x:String>Junio</x:String>
+                                <x:String>Julio</x:String>
+                                <x:String>Agosto</x:String>
+                                <x:String>Septiembre</x:String>
+                                <x:String>Octubre</x:String>
+                                <x:String>Noviembre</x:String>
+                                <x:String>Diciembre</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </Frame>
+
+                <!-- apartado dia -->
+                <Frame BackgroundColor="#d8d8d8" CornerRadius="20" Padding="5" HasShadow="False" WidthRequest="100" Margin="-30,0,-60,0">
+                    <Picker x:Name="DiaPicker" Title="Día" BackgroundColor="Transparent"  TextColor="Black">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:Int32}">
+                                <x:Int32>1</x:Int32>
+                                <x:Int32>2</x:Int32>
+                                <x:Int32>3</x:Int32>
+                                <x:Int32>4</x:Int32>
+                                <x:Int32>5</x:Int32>
+                                <x:Int32>6</x:Int32>
+                                <x:Int32>7</x:Int32>
+                                <x:Int32>8</x:Int32>
+                                <x:Int32>9</x:Int32>
+                                <x:Int32>10</x:Int32>
+                                <x:Int32>11</x:Int32>
+                                <x:Int32>12</x:Int32>
+                                <x:Int32>13</x:Int32>
+                                <x:Int32>14</x:Int32>
+                                <x:Int32>15</x:Int32>
+                                <x:Int32>16</x:Int32>
+                                <x:Int32>17</x:Int32>
+                                <x:Int32>18</x:Int32>
+                                <x:Int32>19</x:Int32>
+                                <x:Int32>20</x:Int32>
+                                <x:Int32>21</x:Int32>
+                                <x:Int32>22</x:Int32>
+                                <x:Int32>23</x:Int32>
+                                <x:Int32>24</x:Int32>
+                                <x:Int32>25</x:Int32>
+                                <x:Int32>26</x:Int32>
+                                <x:Int32>27</x:Int32>
+                                <x:Int32>28</x:Int32>
+                                <x:Int32>29</x:Int32>
+                                <x:Int32>30</x:Int32>
+                                <x:Int32>31</x:Int32>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </Frame>
+
+
+            </StackLayout>
+
+            <Button Text="Registrarse"  
+                    BackgroundColor="#a4efc4"   
+                    TextColor="Black"   
+                    FontAttributes="Bold"   
+                    HeightRequest="50"
+                    CornerRadius="20"  
+                    Margin="60,20,60,-50" 
+                    Clicked="OnRegisterClicked"/>
+        </StackLayout>
+
+    </AbsoluteLayout>
+</ContentPage>

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="prototipoGPS.Inicio">
+
+    <AbsoluteLayout>
+        <Image Source="Fondo4.png"   
+            Aspect="AspectFill"  
+            AbsoluteLayout.LayoutFlags="All"  
+            AbsoluteLayout.LayoutBounds="0.5, 0, 1.2, 1" />
+
+        <!-- Frame con el mensaje de bienvenida -->
+        <Frame x:Name="UserNameFrame" 
+       BackgroundColor="#a4efc4"  
+       CornerRadius="20"
+       IsVisible="False"
+       HorizontalOptions="Center" 
+       VerticalOptions="Start" 
+       Margin="-5,-15,0,10"
+       HasShadow="True"
+       WidthRequest="180">
+
+            <Label x:Name="UserNameLabel" 
+           Text="Bienvenido, Usuario" 
+           FontSize="14"
+           FontAttributes="Bold"
+           TextColor="Black"  
+           VerticalOptions="Center"
+           HorizontalOptions="Center"/>
+        </Frame>
+
+        <!-- Contenido principal de la página -->
+        <StackLayout Padding="20">
+            <Label Text="Comienza a buscar"  
+                       FontSize="24"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"   
+                       VerticalOptions="Start"   
+                       Margin="20,40,0,10" />
+
+            <Label Text="tus pertenencias"  
+                       FontSize="24"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"   
+                       VerticalOptions="Start"   
+                       Margin="25,0,0,20" />
+
+            <!-- Entrada para el nombre del usuario precargado-->
+            <Frame BackgroundColor="#d8d8d8"   
+                       CornerRadius="20"  
+                       Padding="5"  
+                       HasShadow="False"   
+                       Margin="40,60,20,0">
+                <Entry x:Name="UserNameEntry" 
+                           BackgroundColor="Transparent" 
+                           IsReadOnly="True"
+                           TextColor="Black" />
+                <!-- Color de texto negro -->
+            </Frame>
+
+            <!-- Entrada para el nombre del objeto -->
+            <Frame BackgroundColor="#d8d8d8"   
+                        CornerRadius="20"  
+                        Padding="5"  
+                        HasShadow="False"   
+                        Margin="40,60,20,0">
+                <Entry Placeholder="Ingrese el nombre del objeto" 
+                       BackgroundColor="Transparent" 
+                       PlaceholderColor="Black" 
+                    TextColor="Black" />
+                    <!-- Color de texto negro -->
+            </Frame>
+
+            <!-- Selector de sector -->
+            <Frame BackgroundColor="#d8d8d8" 
+                        CornerRadius="20" 
+                        Padding="5" 
+                        HasShadow="False" 
+                        WidthRequest="100" 
+                        Margin="40,60,20,0">
+                <Picker Title="Escoja su sector" BackgroundColor="Transparent" TextColor="Black">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Sangolqui</x:String>
+                            <x:String>Quito</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </Frame>
+
+            <BoxView HeightRequest="30" />
+
+            <!-- Botón para empezar -->
+            <Button Text="Empezar a rastrear el objeto"  
+                        BackgroundColor="#a4efc4"   
+                        TextColor="Black"
+                        CornerRadius="20"
+                        FontAttributes="Bold"
+                        HorizontalOptions="FillAndExpand"   
+                        Margin="50,20,30,0"/>
+        </StackLayout>
+    </AbsoluteLayout>
+
+</ContentPage>
