@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Xamarin.Forms;
@@ -12,116 +13,74 @@ namespace prototipoGPS
     public partial class Registro : ContentPage
     {
         private static readonly HttpClient client = new HttpClient();
-        private string baseUrl = "http://192.168.1.49:3000"; //IP de mi maquina
+        private string baseUrl = "http://192.168.1.49:3000"; // IP de mi máquina
 
         public Registro()
         {
             InitializeComponent();
         }
 
-
-        //prueba de conexion 
-        private async void TestServerConnection()
+        // Método para validar entradas
+        private bool ValidarEntradas()
         {
-            try
+            // Validar que el nombre no esté vacío y solo contenga letras
+            if (string.IsNullOrEmpty(NombreEntry.Text) || !Regex.IsMatch(NombreEntry.Text, @"^[a-zA-Z\s]+$"))
             {
-                HttpResponseMessage response = await client.GetAsync($"{baseUrl}/");
-                string result = await response.Content.ReadAsStringAsync();
-                if (response.IsSuccessStatusCode)
-                {
-                    await DisplayAlert("Conexión exitosa", result, "OK");
-                }
-                else
-                {
-                    await DisplayAlert("Error", $"No se pudo conectar: {response.StatusCode}", "OK");
-                }
+                DisplayAlert("Error", "El nombre solo puede contener letras y no debe estar vacío.", "OK");
+                return false;
             }
-            catch (Exception ex)
+
+            // Validar que el correo tenga un formato válido
+            if (string.IsNullOrEmpty(CorreoEntry.Text) ||
+                !Regex.IsMatch(CorreoEntry.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
-                await DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
+                DisplayAlert("Error", "Por favor, ingrese un correo electrónico válido.", "OK");
+                return false;
             }
-        }
 
-
-        // Método para enviar datos al servidor
-        private async Task SendDataAsync(User user)
-        {
-            try
+            // Validar que la contraseña no esté vacía
+            if (string.IsNullOrEmpty(ContrasenaEntry.Text))
             {
-                // Serializar el objeto de usuario a JSON
-                var json = JsonConvert.SerializeObject(user);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                // Enviar solicitud POST al servidor
-                var response = await client.PostAsync($"{baseUrl}/register", content);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    // Guardar los datos localmente (como ejemplo)
-                    Preferences.Set("userCorreo", user.correo);
-                    Preferences.Set("userContrasena", user.contrasena);
-                    Preferences.Set("userNombre", user.nombre); // Guardar el nombre también
-
-                    // Navegar al login
-                    await DisplayAlert("Éxito", "Usuario registrado correctamente", "OK");
-                    await Navigation.PushAsync(new login());
-                }
-                else
-                {
-                    // Manejar error
-                    string errorMessage = await response.Content.ReadAsStringAsync();
-                    await DisplayAlert("Error", $"Ocurrió un error al registrar al usuario: {errorMessage}", "OK");
-                }
+                DisplayAlert("Error", "Por favor, ingrese una contraseña.", "OK");
+                return false;
             }
-            catch (HttpRequestException httpEx)
+
+            // Validar que se haya seleccionado una fecha completa
+            if (DiaPicker.SelectedItem == null || MesPicker.SelectedItem == null || AnioPicker.SelectedItem == null)
             {
-                // Manejo de errores de conexión
-                await DisplayAlert("Error de conexión", $"No se pudo conectar con el servidor: {httpEx.Message}", "OK");
+                DisplayAlert("Error", "Por favor, seleccione una fecha de nacimiento completa.", "OK");
+                return false;
             }
-            catch (Exception ex)
-            {
-                // Manejar excepciones generales
-                await DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
-            }
+
+            return true;
         }
 
         // Evento del botón de registro
         private async void OnRegisterClicked(object sender, EventArgs e)
         {
+            // Validar campos
+            if (!ValidarEntradas())
+                return;
+
             // Obtener datos de la interfaz de usuario
             string nombre = NombreEntry.Text;
             string correo = CorreoEntry.Text;
             string contrasena = ContrasenaEntry.Text;
 
-            // Validación de campos vacíos
-            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(correo) || string.IsNullOrEmpty(contrasena))
-            {
-                await DisplayAlert("Error", "Por favor, complete todos los campos", "OK");
-                return;
-            }
-
             // Obtener fecha de nacimiento en formato YYYY-MM-DD
             string dia = DiaPicker.SelectedItem?.ToString();
-            string mes = (MesPicker.SelectedIndex + 1).ToString("D2"); // Asegura que el mes tenga dos dígitos
+            string mes = (MesPicker.SelectedIndex + 1).ToString("D2"); // Mes con dos dígitos
             string anio = AnioPicker.SelectedItem?.ToString();
 
             DateTime? fecha_nacimiento = null;
-            if (!string.IsNullOrEmpty(dia) && !string.IsNullOrEmpty(mes) && !string.IsNullOrEmpty(anio))
+            try
             {
-                try
-                {
-                    string fecha_nacimiento_str = $"{anio}-{mes}-{dia}";
-                    fecha_nacimiento = DateTime.Parse(fecha_nacimiento_str);
-                }
-                catch (FormatException)
-                {
-                    await DisplayAlert("Error", "La fecha de nacimiento es inválida.", "OK");
-                    return;
-                }
+                string fecha_nacimiento_str = $"{anio}-{mes}-{dia}";
+                fecha_nacimiento = DateTime.Parse(fecha_nacimiento_str);
             }
-            else
+            catch (FormatException)
             {
-                await DisplayAlert("Error", "Por favor, ingrese una fecha de nacimiento válida.", "OK");
+                await DisplayAlert("Error", "La fecha de nacimiento es inválida.", "OK");
                 return;
             }
 
@@ -136,6 +95,40 @@ namespace prototipoGPS
 
             // Enviar los datos al servidor
             await SendDataAsync(user);
+        }
+
+        // Método para enviar datos al servidor
+        private async Task SendDataAsync(User user)
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(user);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PostAsync($"{baseUrl}/register", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Preferences.Set("userCorreo", user.correo);
+                    Preferences.Set("userContrasena", user.contrasena);
+                    Preferences.Set("userNombre", user.nombre);
+
+                    await DisplayAlert("Éxito", "Usuario registrado correctamente", "OK");
+                    await Navigation.PushAsync(new login());
+                }
+                else
+                {
+                    string errorMessage = await response.Content.ReadAsStringAsync();
+                    await DisplayAlert("Error", $"Ocurrió un error al registrar al usuario: {errorMessage}", "OK");
+                }
+            }
+            catch (HttpRequestException httpEx)
+            {
+                await DisplayAlert("Error de conexión", $"No se pudo conectar con el servidor: {httpEx.Message}", "OK");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
+            }
         }
     }
 }

@@ -105,7 +105,7 @@
 
 
                 <!-- apartado mes -->
-                <Frame BackgroundColor="#d8d8d8" CornerRadius="20" Padding="5" HasShadow="False" WidthRequest="100" Margin="20,0,50,0">
+                <Frame BackgroundColor="#d8d8d8" CornerRadius="20" Padding="5" HasShadow="False" WidthRequest="100" Margin="0,0,0,0">
                     <Picker x:Name="MesPicker" Title="Mes" BackgroundColor="Transparent"  TextColor="Black">
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
@@ -127,7 +127,7 @@
                 </Frame>
 
                 <!-- apartado dia -->
-                <Frame BackgroundColor="#d8d8d8" CornerRadius="20" Padding="5" HasShadow="False" WidthRequest="100" Margin="-30,0,-60,0">
+                <Frame BackgroundColor="#d8d8d8" CornerRadius="20" Padding="5" HasShadow="False" WidthRequest="100" Margin="0,0,-55,0">
                     <Picker x:Name="DiaPicker" Title="Día" BackgroundColor="Transparent"  TextColor="Black">
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:Int32}">

@@ -89,12 +89,15 @@
                     Clicked="OnLoginClicked"/>
 
             <Label Text="¿Olvidaste tu contraseña?"  
-                   FontSize="16"  
-                   TextColor="Black"  
-                   Margin="0,60,0,0"
-                   HorizontalOptions="Center"  
-                   VerticalOptions="End"
-                  />
+       FontSize="16"  
+       TextColor="Black"  
+       Margin="0,60,0,0"
+       HorizontalOptions="Center"  
+       VerticalOptions="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnRecuperarContrasenaTapped" />
+                </Label.GestureRecognizers>
+            </Label>
 
         </StackLayout>
     </Grid>

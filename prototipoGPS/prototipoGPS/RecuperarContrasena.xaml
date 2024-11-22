@@ -2,28 +2,116 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="prototipoGPS.RecuperarContrasena">
-    
-    
-    
-    <StackLayout Padding="20">
-        <Label Text="Recuperar Contraseña" 
-               FontSize="30" 
-               HorizontalOptions="Center" 
-               VerticalOptions="Start" 
-               FontAttributes="Bold" 
-               TextColor="Black" 
-               Margin="0,60,0,20"/>
 
-        <Label Text="CORREO" FontSize="16" TextColor="Black" FontAttributes="Bold" Margin="0,20,0,0"/>
-        <Entry x:Name="CorreoEntry" Placeholder="Introduzca su correo" TextColor="Black" Keyboard="Email"/>
+    <Grid>
+        <!-- Fondo verde -->
+        <BoxView Color="#a4efc4" />
 
-        <Button Text="Enviar Solicitud" 
-                BackgroundColor="Black" 
-                TextColor="White" 
-                FontAttributes="Bold" 
-                CornerRadius="20" 
-                HeightRequest="50" 
-                Margin="0,40,0,0" 
-                Clicked="OnEnviarSolicitudClicked"/>
-    </StackLayout>
+        <!-- Parte blanca con logo y título -->
+        <Frame BackgroundColor="White"  
+        CornerRadius="150"  
+        Padding="0"  
+        HasShadow="False"  
+        VerticalOptions="Start"  
+        HeightRequest="350"   
+        Margin="-30,-120,-30,0">
+            <StackLayout Padding="0">
+                <!-- imagen -->
+                <Image Source="Fondo_6" HeightRequest="200" WidthRequest="0"  
+                Margin="0,130,0,0" />
+
+               
+            </StackLayout>
+        </Frame>
+        
+        <StackLayout>
+            <Label Text="Recuperar Contraseña" FontSize="30" HorizontalOptions="Center" VerticalOptions="Start" FontAttributes="Bold" TextColor="Black" Margin="0,235,0,10"/>
+
+            <Label Text="CORREO" FontSize="16" TextColor="Black" FontAttributes="Bold" Margin="60,0,0,0"/>
+            <Frame BackgroundColor="#d8d8d8" CornerRadius="20" Padding="4" HasShadow="False" HeightRequest="38" Margin="60,5,60,10">
+                <Entry x:Name="CorreoEntry" 
+                       Placeholder="Introduzca su correo" 
+                       BackgroundColor="Transparent" 
+                       TextColor="Black" 
+                       PlaceholderColor="Black"
+                       FontSize="16"/>
+            </Frame>
+
+            <!-- Botón para recibir código -->
+            <Button x:Name="RecibirCodigoButton" 
+                    Text="Recibir Código" 
+                    BackgroundColor="Black" 
+                    TextColor="White" 
+                    CornerRadius="20" 
+                    FontAttributes="Bold" 
+                    HorizontalOptions="FillAndExpand" 
+                    Margin="60,0,60,-5" 
+                    HeightRequest="40"
+                    FontSize="14"                    
+                    Clicked="OnRecibirCodigoClicked"/>
+
+            <!-- Botón para ver el código (oculto inicialmente) -->
+            <Button x:Name="VerCodigoButton" 
+                    Text="Ver Código" 
+                    BackgroundColor="Black" 
+                    TextColor="White" 
+                    CornerRadius="20" 
+                    FontAttributes="Bold" 
+                    HorizontalOptions="FillAndExpand" 
+                    Margin="60,20,60,-5" IsEnabled="False" 
+                    HeightRequest="40"
+                    FontSize="14"
+                    Clicked="OnVerCodigoClicked"/>
+
+            <!-- Campo para mostrar el código generado, solo lectura -->
+                
+                <Entry x:Name="CodigoDisplayEntry" 
+                   IsVisible="False" 
+                   IsReadOnly="True" 
+                   TextColor="Black"
+                   Margin="65,-5,220,0"
+                       FontSize="18"/>
+            
+            <!-- Campo para validar el código de verificación -->
+            <Frame BackgroundColor="#d8d8d8" CornerRadius="20" Padding="4" HasShadow="False" HeightRequest="38" Margin="60,5,60,10">
+                <Entry x:Name="CodigoEntry" 
+                       Placeholder="Ingrese el Código de Verificación" 
+                       BackgroundColor="Transparent" 
+                       TextColor="Black" 
+                       PlaceholderColor="Black"
+                       FontSize="16"
+                       TextChanged="OnCodigoEntryTextChanged"/>
+            </Frame>
+
+            <!-- Formulario para cambiar la contraseña (oculto inicialmente) -->
+            <StackLayout x:Name="FormularioCambioContrasena" IsVisible="False">
+                <Frame BackgroundColor="#d8d8d8" CornerRadius="20" Padding="4" HasShadow="False" HeightRequest="38" Margin="60,5,60,10">
+                    <Entry x:Name="NuevaContrasenaEntry" 
+                Placeholder="Ingrese una nueva Contraseña" 
+                PlaceholderColor="Black"
+                IsPassword="True" 
+                TextColor="Black" 
+                BackgroundColor="Transparent"
+                FontSize="16"
+                IsEnabled="False"/>
+                </Frame>
+
+                <Button Text="Cambiar Contraseña" 
+             BackgroundColor="Black" 
+             TextColor="White" 
+             FontAttributes="Bold" 
+             CornerRadius="20"
+             HeightRequest="40"
+             FontSize="14"
+             Margin="60,0,60,0"
+             Clicked="OnActualizarContrasenaClicked"/>
+            </StackLayout>
+
+
+            <!-- Mensaje de notificación -->
+            <Label x:Name="NotificacionLabel" TextColor="Black" IsVisible="False" Margin="0,0,0,0"/>
+        </StackLayout>
+
+    </Grid>
+    
 </ContentPage>

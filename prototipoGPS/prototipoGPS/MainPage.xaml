@@ -32,7 +32,6 @@
         CornerRadius="20"
         HeightRequest="50"
         Margin="0,-240,0,20"
-        ImageSource="logo_small.png"
         Clicked="OnContinueClicked" />
         <!-- Evento Clicked -->
 

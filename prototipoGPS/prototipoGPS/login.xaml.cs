@@ -12,7 +12,9 @@ namespace prototipoGPS
     public partial class login : ContentPage
     {
         private HttpClient client;
-        private string baseUrl = "http://192.168.1.49:3000"; // Cambia la URL por la de tu servidor
+        private string baseUrl = "http://192.168.1.49:3000"; 
+        //private string baseUrl = "http://10.0.2.2:3000"; 
+
 
         public login()
         {
@@ -63,5 +65,13 @@ namespace prototipoGPS
                 await DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
             }
         }
+        // Evento para abrir la página de recuperación de contraseña
+        private async void OnRecuperarContrasenaTapped(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new RecuperarContrasena());
+        }
+
+
+
     }
 }
