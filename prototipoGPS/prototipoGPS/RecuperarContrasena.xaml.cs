@@ -25,8 +25,9 @@ namespace prototipoGPS
 
             if (string.IsNullOrEmpty(correo))
             {
-                await DisplayAlert("Error", "Por favor ingrese un correo.", "OK");
+                await Navigation.PushModalAsync(new AlertasPersonalizadas("Correo requerido", "Por favor, ingresa una dirección de correo para continuar"));              
                 return;
+
             }
 
             // Validar si el correo está registrado en la base de datos
@@ -34,7 +35,9 @@ namespace prototipoGPS
 
             if (!correoValido)
             {
-                await DisplayAlert("Error", "El correo no está registrado.", "OK");
+                await Navigation.PushModalAsync(new AlertasPersonalizadas("Correo no encontrado", "No pudimos encontrar este correo en nuestro sistema. " +
+                                                                          "Por favor, verifica la dirección ingresada o regístrate si aún no lo has hecho"));
+            
                 return;
             }
 
@@ -85,7 +88,8 @@ namespace prototipoGPS
 
             if (string.IsNullOrEmpty(nuevaContrasena))
             {
-                await DisplayAlert("Error", "Por favor ingrese la nueva contraseña.", "OK");
+                await Navigation.PushModalAsync(new AlertasPersonalizadas("Contraseña requerida", "Por favor introduce tu nueva contraseña para continuar"));
+
                 return;
             }
 
@@ -100,18 +104,21 @@ namespace prototipoGPS
                 var response = await client.PostAsync("http://192.168.1.49:3000/cambiar-contrasena", content);
                 if (response.IsSuccessStatusCode)
                 {
-                    await DisplayAlert("Éxito", "La contraseña ha sido cambiada.", "OK");
+                    await Navigation.PushModalAsync(new AlertasPersonalizadas("Actualizacion Exitosa", "Contraseña actualizada correctamente"));
+                  
                     await Navigation.PopAsync();  // Volver al inicio de sesión
                 }
                 else
                 {
-                    await DisplayAlert("Error", "No se pudo actualizar la contraseña.", "OK");
+                    await Navigation.PushModalAsync(new AlertasPersonalizadas("Actualizacion fallida", "No fue posible actualizar la contraseña. " +
+                                                                              "Por favor Iintentalo nuevamete"));
+             
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al actualizar la contraseña: " + ex.Message);
-                await DisplayAlert("Error", "Ocurrió un error en la solicitud.", "OK");
+                await Navigation.PushModalAsync(new AlertasPersonalizadas("Error", "Ocurrio un error en la solicitud al servidor."));
             }
         }
 

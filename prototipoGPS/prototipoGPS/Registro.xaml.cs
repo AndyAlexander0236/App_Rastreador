@@ -26,7 +26,8 @@ namespace prototipoGPS
             // Validar que el nombre no esté vacío y solo contenga letras
             if (string.IsNullOrEmpty(NombreEntry.Text) || !Regex.IsMatch(NombreEntry.Text, @"^[a-zA-Z\s]+$"))
             {
-                DisplayAlert("Error", "El nombre solo puede contener letras y no debe estar vacío.", "OK");
+                Navigation.PushModalAsync(new AlertasPersonalizadas("Validación de Nombre",
+                                                                  "El nombre solo debe contener letras y no puede estar vacío. Intenta nuevamente."));
                 return false;
             }
 
@@ -34,21 +35,24 @@ namespace prototipoGPS
             if (string.IsNullOrEmpty(CorreoEntry.Text) ||
                 !Regex.IsMatch(CorreoEntry.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
-                DisplayAlert("Error", "Por favor, ingrese un correo electrónico válido.", "OK");
+                Navigation.PushModalAsync(new AlertasPersonalizadas("Correo Electrónico Inválido",
+                                                                  "Por favor, ingresa un correo electrónico válido para continuar."));
                 return false;
             }
 
             // Validar que la contraseña no esté vacía
             if (string.IsNullOrEmpty(ContrasenaEntry.Text))
             {
-                DisplayAlert("Error", "Por favor, ingrese una contraseña.", "OK");
+                Navigation.PushModalAsync(new AlertasPersonalizadas("Validación de Contraseña",
+                                                                  "Es necesario que ingreses una contraseña. No puedes dejar este campo vacío."));
                 return false;
             }
 
             // Validar que se haya seleccionado una fecha completa
             if (DiaPicker.SelectedItem == null || MesPicker.SelectedItem == null || AnioPicker.SelectedItem == null)
             {
-                DisplayAlert("Error", "Por favor, seleccione una fecha de nacimiento completa.", "OK");
+                Navigation.PushModalAsync(new AlertasPersonalizadas("Fecha de Nacimiento Incompleta",
+                                                                  "Selecciona una fecha de nacimiento válida y asegúrate de que sea completa."));
                 return false;
             }
 
@@ -80,7 +84,9 @@ namespace prototipoGPS
             }
             catch (FormatException)
             {
-                await DisplayAlert("Error", "La fecha de nacimiento es inválida.", "OK");
+                await Navigation.PushModalAsync(new AlertasPersonalizadas("Fecha de Nacimiento Incorrecta", 
+                                                                          "La fecha de nacimiento proporcionada no es válida. " +
+                                                                          "Por favor, revisa y corrige el dato."));              
                 return;
             }
 
@@ -112,22 +118,26 @@ namespace prototipoGPS
                     Preferences.Set("userContrasena", user.contrasena);
                     Preferences.Set("userNombre", user.nombre);
 
-                    await DisplayAlert("Éxito", "Usuario registrado correctamente", "OK");
+                    await Navigation.PushModalAsync(new AlertasPersonalizadas("Registro Exitoso","Te has registrado correctamente"));
+
                     await Navigation.PushAsync(new login());
                 }
                 else
                 {
                     string errorMessage = await response.Content.ReadAsStringAsync();
-                    await DisplayAlert("Error", $"Ocurrió un error al registrar al usuario: {errorMessage}", "OK");
+                    await Navigation.PushModalAsync(new AlertasPersonalizadas("Error", "A ocurrido un error al registrar al usuario"));
+
                 }
             }
             catch (HttpRequestException httpEx)
             {
-                await DisplayAlert("Error de conexión", $"No se pudo conectar con el servidor: {httpEx.Message}", "OK");
+                await Navigation.PushModalAsync(new AlertasPersonalizadas("Error de conexión", "No se pudo conectar con el servidor"));
+
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
+                await Navigation.PushModalAsync(new AlertasPersonalizadas("Error", $"Ocurrio un error:{ex.Message} "));
+
             }
         }
     }

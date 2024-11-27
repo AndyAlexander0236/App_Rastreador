@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="prototipoGPS.AlertasPersonalizadas"
+             BackgroundColor="Transparent">
+    
+    
+    <Grid BackgroundColor="#00FF0000" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <!-- Tu Frame con el contenido -->
+            <Frame Padding="20"
+                   BackgroundColor="#f9f9f9"
+                   CornerRadius="15"
+                   WidthRequest="280"
+                   HeightRequest="160"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   HasShadow="True">
+                <StackLayout VerticalOptions="CenterAndExpand">
+                    <Label x:Name="TitleLabel"
+                           Text="Título del Mensaje"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           TextColor="#333333" />
+
+                    <Label x:Name="MessageLabel"
+                           Text="Este es un mensaje de error personalizado."
+                           FontSize="15"
+                           HorizontalTextAlignment="Center"
+                           TextColor="#555555"
+                           Margin="0,10,0,10" />
+
+                    <Button Text="Entendido"
+                            Clicked="OnCloseButtonClicked"
+                            BackgroundColor="#a4efc4"
+                            TextColor="Black"
+                            CornerRadius="10"
+                            WidthRequest="120"
+                            HorizontalOptions="Center" />
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </Grid>
+</ContentPage>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,14 +50,17 @@ namespace prototipoGPS
                     Preferences.Set("userNombre", user.nombre);
 
                     // Mostrar mensaje de éxito y navegar a la siguiente página
-                    await DisplayAlert("Éxito", "Inicio de sesión exitoso", "OK");
+                    await Navigation.PushModalAsync(new AlertasPersonalizadas("Inicio de Sesión Exitosa","Te dsamos la bienvenida"));
                     await Navigation.PushAsync(new entrada());
                 }
                 else
                 {
                     // Si no es exitosa, mostrar mensaje de error
                     string errorMessage = await response.Content.ReadAsStringAsync();
-                    await DisplayAlert("Error", $"Correo o contraseña incorrectos: {errorMessage}", "OK");
+                    await Navigation.PushModalAsync(new AlertasPersonalizadas( "Inicio de Sesión Fallido",
+                    "No pudimos iniciar sesión debido a un error. Por favor, revisa tu correo y contraseña e inténtalo nuevamente." ));
+
+
                 }
             }
             catch (Exception ex)

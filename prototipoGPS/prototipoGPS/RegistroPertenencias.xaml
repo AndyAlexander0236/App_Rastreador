@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="prototipoGPS.RegistroPertenencias"
+             BackgroundColor="White">
+
+    <ContentPage.Content>
+        <StackLayout Padding="20" Spacing="5">
+            <!-- Título de la tabla -->
+            <Label Text="Tabla de Registros"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" 
+                   TextColor="Black"
+                   Margin="0,0,0,20"/>
+
+            <!-- Crear la tabla sin recuadro, usando StackLayout -->
+            <StackLayout Spacing="10">
+                <!-- Fila de encabezado -->
+                <StackLayout Orientation="Horizontal" Spacing="0">
+                    <Label Text="Nombre" FontAttributes="Bold" HorizontalOptions="StartAndExpand" TextColor="Black" BackgroundColor="#a4efc4" Padding="14"/>
+                    <Label Text="Objeto" FontAttributes="Bold" HorizontalOptions="StartAndExpand" TextColor="Black" BackgroundColor="#a4efc4" Padding="14"/>
+                    <Label Text="Fecha" FontAttributes="Bold" HorizontalOptions="StartAndExpand" TextColor="Black" BackgroundColor="#a4efc4" Padding="14"/>
+                    <Label Text="Lugar" FontAttributes="Bold" HorizontalOptions="StartAndExpand" TextColor="Black" BackgroundColor="#a4efc4" Padding="14"/>
+                </StackLayout>
+
+                <!-- Datos de la tabla (Fila 1) -->
+                <StackLayout Orientation="Horizontal" Spacing="20">
+                    <Label Text="Juan Pérez" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+                    <Label Text="Libro" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+                    <Label Text="01/12/2024" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+                    <Label Text="Madrid" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+                </StackLayout>
+
+                <!-- Datos de la tabla (Fila 2) -->
+                <StackLayout Orientation="Horizontal" Spacing="20">
+                    <Label Text="Ana García" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+                    <Label Text="Computadora" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+                    <Label Text="02/12/2024" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+                    <Label Text="Barcelona" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+                </StackLayout>
+
+                <!-- Datos de la tabla (Fila 3) -->
+                <StackLayout Orientation="Horizontal" Spacing="20">
+                    <Label Text="Carlos Ruiz" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+                    <Label Text="Teléfono" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+                    <Label Text="03/12/2024" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+                    <Label Text="Valencia" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -4,10 +4,10 @@
              x:Class="prototipoGPS.Inicio">
 
     <AbsoluteLayout>
-        <Image Source="Fondo4.png"   
+        <Image Source="Fondo_4.jpg"   
             Aspect="AspectFill"  
             AbsoluteLayout.LayoutFlags="All"  
-            AbsoluteLayout.LayoutBounds="0.5, 0, 1.2, 1" />
+            AbsoluteLayout.LayoutBounds="0.5, 0, 1.1, 1" />
 
         <!-- Frame con el mensaje de bienvenida -->
         <Frame x:Name="UserNameFrame" 
@@ -37,7 +37,7 @@
                        FontAttributes="Bold"
                        HorizontalOptions="Center"   
                        VerticalOptions="Start"   
-                       Margin="20,40,0,10" />
+                       Margin="20,30,0,10" />
 
             <Label Text="tus pertenencias"  
                        FontSize="24"
@@ -45,7 +45,7 @@
                        FontAttributes="Bold"
                        HorizontalOptions="Center"   
                        VerticalOptions="Start"   
-                       Margin="25,0,0,20" />
+                       Margin="25,0,0,0" />
 
             <!-- Entrada para el nombre del usuario precargado-->
             <Frame BackgroundColor="#d8d8d8"   
@@ -80,7 +80,7 @@
                         HasShadow="False" 
                         WidthRequest="100" 
                         Margin="40,60,20,0">
-                <Picker Title="Escoja su sector" BackgroundColor="Transparent" TextColor="Black">
+                <Picker Title="Escoja su sector" TitleColor="Black" BackgroundColor="Transparent" TextColor="Black">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Sangolqui</x:String>
@@ -90,7 +90,7 @@
                 </Picker>
             </Frame>
 
-            <BoxView HeightRequest="30" />
+            <BoxView HeightRequest="20" />
 
             <!-- Botón para empezar -->
             <Button Text="Empezar a rastrear el objeto"  
@@ -99,7 +99,19 @@
                         CornerRadius="20"
                         FontAttributes="Bold"
                         HorizontalOptions="FillAndExpand"   
-                        Margin="50,20,30,0"/>
+                        Margin="50,20,30,0"
+                        Clicked="OnBusquedaClicked" />
+
+            <!-- Botón para ir al registro de pertenencias -->
+            <Button Text="Ver Registro de busquedas"  
+             BackgroundColor="#a4efc4"   
+             TextColor="Black"
+             CornerRadius="20"
+             FontAttributes="Bold"
+             HorizontalOptions="FillAndExpand"   
+             Margin="50,20,30,0"
+             Clicked="OnRegisterPClicked"/>
+            
         </StackLayout>
     </AbsoluteLayout>
 

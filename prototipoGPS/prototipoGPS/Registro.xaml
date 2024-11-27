@@ -33,7 +33,6 @@
                            BackgroundColor="Transparent"  
                            TextColor="Black" 
                            PlaceholderColor="Black" />
-                    <!-- Placeholder color negro -->
                 </Frame>
 
                 <Label Text="CORREO" FontSize="18" TextColor="Black"  FontAttributes="Bold"/>
@@ -47,7 +46,6 @@
                            BackgroundColor="Transparent" 
                            TextColor="Black" 
                            PlaceholderColor="Black" />
-                    <!-- Placeholder color negro -->
                 </Frame>
 
                 <Label Text="CONTRASEÑA" FontSize="18" TextColor="Black"  FontAttributes="Bold"/>
@@ -62,7 +60,6 @@
                            TextColor="Black" 
                            IsPassword="True" 
                            PlaceholderColor="Black" />
-                    <!-- Placeholder color negro -->
                 </Frame>
 
             </StackLayout>
@@ -74,7 +71,7 @@
 
                 <!-- apartado año -->
                 <Frame BackgroundColor="#d8d8d8" CornerRadius="20" Padding="5" HasShadow="False" WidthRequest="100" Margin="0,0,0,0">
-                    <Picker x:Name="AnioPicker" Title="Año" BackgroundColor="Transparent"  TextColor="Black">
+                    <Picker x:Name="AnioPicker" Title="Año" TitleColor="Black" BackgroundColor="Transparent"  TextColor="Black">
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:Int32}">
                                 <x:Int32>1990</x:Int32>
@@ -106,7 +103,7 @@
 
                 <!-- apartado mes -->
                 <Frame BackgroundColor="#d8d8d8" CornerRadius="20" Padding="5" HasShadow="False" WidthRequest="100" Margin="0,0,0,0">
-                    <Picker x:Name="MesPicker" Title="Mes" BackgroundColor="Transparent"  TextColor="Black">
+                    <Picker x:Name="MesPicker" Title="Mes" TitleColor="Black" BackgroundColor="Transparent"  TextColor="Black">
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
                                 <x:String>Enero</x:String>
@@ -128,7 +125,7 @@
 
                 <!-- apartado dia -->
                 <Frame BackgroundColor="#d8d8d8" CornerRadius="20" Padding="5" HasShadow="False" WidthRequest="100" Margin="0,0,-55,0">
-                    <Picker x:Name="DiaPicker" Title="Día" BackgroundColor="Transparent"  TextColor="Black">
+                    <Picker x:Name="DiaPicker" Title="Día" TitleColor="Black" BackgroundColor="Transparent"  TextColor="Black">
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:Int32}">
                                 <x:Int32>1</x:Int32>

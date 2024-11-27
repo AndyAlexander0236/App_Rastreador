@@ -52,6 +52,19 @@ namespace prototipoGPS
                     return false; // Detener el temporizador
                 });
             });
+
         }
+
+        private async void OnRegisterPClicked(object sender, EventArgs e)
+        {         
+            await Navigation.PushAsync(new RegistroPertenencias());    
+        }
+
+        private async void OnBusquedaClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new busqueda());
+        }
+
     }
+
 }
