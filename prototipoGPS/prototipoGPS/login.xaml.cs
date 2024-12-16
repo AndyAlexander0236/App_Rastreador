@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq.Expressions;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,9 +12,6 @@ namespace prototipoGPS
     public partial class login : ContentPage
     {
         private HttpClient client;
-        private string baseUrl = "http://192.168.1.49:3000"; 
-        //private string baseUrl = "http://10.0.2.2:3000"; 
-
 
         public login()
         {
@@ -30,6 +26,11 @@ namespace prototipoGPS
             string correo = CorreoEntry.Text;
             string contrasena = ContrasenaEntry.Text;
 
+            // Obtener la IP y el puerto desde la clase Configuracion
+            string ip = Configuracion.Ip;
+            string puerto = Configuracion.Puerto;
+            string baseUrl = $"http://{ip}:{puerto}/login";
+
             // Crear un objeto que se enviará al servidor con las credenciales
             var loginData = new { correo = correo, contrasena = contrasena };
             var json = JsonConvert.SerializeObject(loginData);
@@ -38,29 +39,31 @@ namespace prototipoGPS
             try
             {
                 // Enviar los datos al servidor para validar el login
-                var response = await client.PostAsync($"{baseUrl}/login", content);
+                var response = await client.PostAsync(baseUrl, content);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    // Si la respuesta es exitosa, obtener el nombre del usuario desde la respuesta
+                    // Si la respuesta es exitosa, obtiene el nombre del usuario desde la respuesta
                     var result = await response.Content.ReadAsStringAsync();
                     var user = JsonConvert.DeserializeObject<User>(result); // Asumiendo que recibes los datos del usuario, incluyendo su nombre
 
                     // Guardar el nombre en las preferencias locales
                     Preferences.Set("userNombre", user.nombre);
 
+                    // Limpiar los campos de texto
+                    CorreoEntry.Text = string.Empty;
+                    ContrasenaEntry.Text = string.Empty;
+
                     // Mostrar mensaje de éxito y navegar a la siguiente página
-                    await Navigation.PushModalAsync(new AlertasPersonalizadas("Inicio de Sesión Exitosa","Te dsamos la bienvenida"));
+                    await Navigation.PushModalAsync(new AlertasPersonalizadas("Inicio de Sesión Exitosa", "Te damos la bienvenida"));
                     await Navigation.PushAsync(new entrada());
                 }
                 else
                 {
                     // Si no es exitosa, mostrar mensaje de error
                     string errorMessage = await response.Content.ReadAsStringAsync();
-                    await Navigation.PushModalAsync(new AlertasPersonalizadas( "Inicio de Sesión Fallido",
-                    "No pudimos iniciar sesión debido a un error. Por favor, revisa tu correo y contraseña e inténtalo nuevamente." ));
-
-
+                    await Navigation.PushModalAsync(new AlertasPersonalizadas("Inicio de Sesión Fallido",
+                    "No pudimos iniciar sesión debido a un error. Por favor, revisa tu correo y contraseña e inténtalo nuevamente."));
                 }
             }
             catch (Exception ex)
@@ -69,13 +72,11 @@ namespace prototipoGPS
                 await DisplayAlert("Error", $"Ocurrió un error: {ex.Message}", "OK");
             }
         }
+
         // Evento para abrir la página de recuperación de contraseña
         private async void OnRecuperarContrasenaTapped(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new RecuperarContrasena());
         }
-
-
-
     }
 }

@@ -5,49 +5,32 @@
              BackgroundColor="White">
 
     <ContentPage.Content>
-        <StackLayout Padding="20" Spacing="5">
-            <!-- Título de la tabla -->
-            <Label Text="Tabla de Registros"
+        <StackLayout Padding="20" Spacing="10">
+            <!-- Título -->
+            <Label Text="Registros de Objetos"
                    FontSize="24"
                    FontAttributes="Bold"
-                   HorizontalOptions="Center" 
-                   TextColor="Black"
-                   Margin="0,0,0,20"/>
+                   HorizontalOptions="Center"
+                   TextColor="Black" />
 
-            <!-- Crear la tabla sin recuadro, usando StackLayout -->
-            <StackLayout Spacing="10">
-                <!-- Fila de encabezado -->
-                <StackLayout Orientation="Horizontal" Spacing="0">
-                    <Label Text="Nombre" FontAttributes="Bold" HorizontalOptions="StartAndExpand" TextColor="Black" BackgroundColor="#a4efc4" Padding="14"/>
-                    <Label Text="Objeto" FontAttributes="Bold" HorizontalOptions="StartAndExpand" TextColor="Black" BackgroundColor="#a4efc4" Padding="14"/>
-                    <Label Text="Fecha" FontAttributes="Bold" HorizontalOptions="StartAndExpand" TextColor="Black" BackgroundColor="#a4efc4" Padding="14"/>
-                    <Label Text="Lugar" FontAttributes="Bold" HorizontalOptions="StartAndExpand" TextColor="Black" BackgroundColor="#a4efc4" Padding="14"/>
-                </StackLayout>
-
-                <!-- Datos de la tabla (Fila 1) -->
-                <StackLayout Orientation="Horizontal" Spacing="20">
-                    <Label Text="Juan Pérez" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-                    <Label Text="Libro" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-                    <Label Text="01/12/2024" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-                    <Label Text="Madrid" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-                </StackLayout>
-
-                <!-- Datos de la tabla (Fila 2) -->
-                <StackLayout Orientation="Horizontal" Spacing="20">
-                    <Label Text="Ana García" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-                    <Label Text="Computadora" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-                    <Label Text="02/12/2024" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-                    <Label Text="Barcelona" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-                </StackLayout>
-
-                <!-- Datos de la tabla (Fila 3) -->
-                <StackLayout Orientation="Horizontal" Spacing="20">
-                    <Label Text="Carlos Ruiz" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-                    <Label Text="Teléfono" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-                    <Label Text="03/12/2024" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-                    <Label Text="Valencia" HorizontalOptions="StartAndExpand" TextColor="Black"/>
-                </StackLayout>
-            </StackLayout>
+            <!-- ListView para mostrar registros -->
+            <ListView x:Name="ListaRegistros"
+                      HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <!--<ViewCell>
+                           <StackLayout Orientation="Horizontal" Padding="10" Spacing="20">
+                               <Label Text="{Binding NombreObjeto}"
+                                      FontSize="16"
+                                      TextColor="Black" />
+                               <Label Text="{Binding FechaHora, StringFormat='{0:dd/MM/yyyy HH:mm}'}"
+                                      FontSize="16"
+                                       TextColor="Gray" />
+                           </StackLayout>
+                       </ViewCell>-->
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

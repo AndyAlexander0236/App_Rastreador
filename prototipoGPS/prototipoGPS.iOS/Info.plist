@@ -7,7 +7,12 @@
         <integer>1</integer>
         <integer>2</integer>
     </array>
-    <key>UISupportedInterfaceOrientations</key>
+
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Se necesita acceso a la ubicación para mostrar el mapa.</string>
+
+
+	<key>UISupportedInterfaceOrientations</key>
     <array>
         <string>UIInterfaceOrientationPortrait</string>
         <string>UIInterfaceOrientationLandscapeLeft</string>

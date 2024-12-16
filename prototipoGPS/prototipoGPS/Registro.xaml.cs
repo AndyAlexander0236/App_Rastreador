@@ -13,14 +13,13 @@ namespace prototipoGPS
     public partial class Registro : ContentPage
     {
         private static readonly HttpClient client = new HttpClient();
-        private string baseUrl = "http://192.168.1.49:3000"; // IP de mi máquina
 
         public Registro()
         {
             InitializeComponent();
         }
 
-        // Método para validar entradas
+        // Método para validar entradas de texto 
         private bool ValidarEntradas()
         {
             // Validar que el nombre no esté vacío y solo contenga letras
@@ -84,13 +83,13 @@ namespace prototipoGPS
             }
             catch (FormatException)
             {
-                await Navigation.PushModalAsync(new AlertasPersonalizadas("Fecha de Nacimiento Incorrecta", 
+                await Navigation.PushModalAsync(new AlertasPersonalizadas("Fecha de Nacimiento Incorrecta",
                                                                           "La fecha de nacimiento proporcionada no es válida. " +
-                                                                          "Por favor, revisa y corrige el dato."));              
+                                                                          "Por favor, revisa y corrige el dato."));
                 return;
             }
 
-            // Crear un nuevo objeto User
+            // Crear un nuevo registro
             var user = new User
             {
                 nombre = nombre,
@@ -108,9 +107,14 @@ namespace prototipoGPS
         {
             try
             {
+                // Obtener la IP y el puerto desde la clase ConfiguracionConexion
+                string ip = Configuracion.Ip;
+                string puerto = Configuracion.Puerto;
+                string baseUrl = $"http://{ip}:{puerto}/register";
+
                 var json = JsonConvert.SerializeObject(user);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync($"{baseUrl}/register", content);
+                var response = await client.PostAsync(baseUrl, content);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -118,7 +122,17 @@ namespace prototipoGPS
                     Preferences.Set("userContrasena", user.contrasena);
                     Preferences.Set("userNombre", user.nombre);
 
-                    await Navigation.PushModalAsync(new AlertasPersonalizadas("Registro Exitoso","Te has registrado correctamente"));
+
+                    // Limpiar los campos de texto
+                    NombreEntry.Text = string.Empty;
+                    CorreoEntry.Text = string.Empty;
+                    ContrasenaEntry.Text = string.Empty;
+                    DiaPicker.SelectedItem = null;
+                    MesPicker.SelectedItem = null;
+                    AnioPicker.SelectedItem = null;
+
+
+                    await Navigation.PushModalAsync(new AlertasPersonalizadas("Registro Exitoso", "Te has registrado correctamente"));
 
                     await Navigation.PushAsync(new login());
                 }
@@ -126,18 +140,15 @@ namespace prototipoGPS
                 {
                     string errorMessage = await response.Content.ReadAsStringAsync();
                     await Navigation.PushModalAsync(new AlertasPersonalizadas("Error", "A ocurrido un error al registrar al usuario"));
-
                 }
             }
             catch (HttpRequestException httpEx)
             {
                 await Navigation.PushModalAsync(new AlertasPersonalizadas("Error de conexión", "No se pudo conectar con el servidor"));
-
             }
             catch (Exception ex)
             {
                 await Navigation.PushModalAsync(new AlertasPersonalizadas("Error", $"Ocurrio un error:{ex.Message} "));
-
             }
         }
     }

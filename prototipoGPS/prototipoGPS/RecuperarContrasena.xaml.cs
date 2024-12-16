@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using Xamarin.Essentials;
+using prototipoGPS.Modelos; 
 
 namespace prototipoGPS
 {
@@ -25,9 +26,8 @@ namespace prototipoGPS
 
             if (string.IsNullOrEmpty(correo))
             {
-                await Navigation.PushModalAsync(new AlertasPersonalizadas("Correo requerido", "Por favor, ingresa una dirección de correo para continuar"));              
+                await Navigation.PushModalAsync(new AlertasPersonalizadas("Correo requerido", "Por favor, ingresa una dirección de correo para continuar"));
                 return;
-
             }
 
             // Validar si el correo está registrado en la base de datos
@@ -36,8 +36,7 @@ namespace prototipoGPS
             if (!correoValido)
             {
                 await Navigation.PushModalAsync(new AlertasPersonalizadas("Correo no encontrado", "No pudimos encontrar este correo en nuestro sistema. " +
-                                                                          "Por favor, verifica la dirección ingresada o regístrate si aún no lo has hecho"));
-            
+                                                                              "Por favor, verifica la dirección ingresada o regístrate si aún no lo has hecho"));
                 return;
             }
 
@@ -53,7 +52,7 @@ namespace prototipoGPS
         // Evento del botón "Ver Código"
         private void OnVerCodigoClicked(object sender, EventArgs e)
         {
-            // Mostrar el código generado en el campo de solo lectura
+            // Mostrar el código generado en el campo en modo solo de lectura
             CodigoDisplayEntry.Text = codigoVerificacion;
         }
 
@@ -63,7 +62,7 @@ namespace prototipoGPS
             // Verificar si el código ingresado es correcto
             if (e.NewTextValue == codigoVerificacion)
             {
-                // Habilitar el formulario para cambiar la contraseña
+                // Habilita el formulario para cambiar la contraseña
                 FormularioCambioContrasena.IsVisible = true;
                 NuevaContrasenaEntry.IsEnabled = true;
                 NotificacionLabel.Text = "Código correcto. Ahora puede cambiar la contraseña.";
@@ -71,7 +70,7 @@ namespace prototipoGPS
             }
             else
             {
-                // Mostrar un mensaje de error si el código no es correcto
+                // Muestra un mensaje de error si el código no es correcto
                 FormularioCambioContrasena.IsVisible = false;
                 NotificacionLabel.Text = "El código es incorrecto. Por favor, inténtelo de nuevo.";
                 NotificacionLabel.TextColor = Color.Red;
@@ -89,9 +88,13 @@ namespace prototipoGPS
             if (string.IsNullOrEmpty(nuevaContrasena))
             {
                 await Navigation.PushModalAsync(new AlertasPersonalizadas("Contraseña requerida", "Por favor introduce tu nueva contraseña para continuar"));
-
                 return;
             }
+
+            // Usar la clase Configuracion para obtener la IP y el puerto
+            string ip = Configuracion.Ip;
+            string puerto = Configuracion.Puerto;
+            string baseUrl = $"http://{ip}:{puerto}/cambiar-contrasena";
 
             // Solicitud para cambiar la contraseña en el servidor Node.js
             var client = new HttpClient();
@@ -101,24 +104,25 @@ namespace prototipoGPS
 
             try
             {
-                var response = await client.PostAsync("http://192.168.1.49:3000/cambiar-contrasena", content);
+                // Construir la URL de conexión usando los valores de la clase ConfiguraciónConexion
+                string url = $"http://{ip}:{puerto}/cambiar-contrasena";
+                var response = await client.PostAsync(url, content);
+
                 if (response.IsSuccessStatusCode)
                 {
                     await Navigation.PushModalAsync(new AlertasPersonalizadas("Actualizacion Exitosa", "Contraseña actualizada correctamente"));
-                  
                     await Navigation.PopAsync();  // Volver al inicio de sesión
                 }
                 else
                 {
                     await Navigation.PushModalAsync(new AlertasPersonalizadas("Actualizacion fallida", "No fue posible actualizar la contraseña. " +
-                                                                              "Por favor Iintentalo nuevamete"));
-             
+                                                                              "Por favor inténtalo nuevamente"));
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al actualizar la contraseña: " + ex.Message);
-                await Navigation.PushModalAsync(new AlertasPersonalizadas("Error", "Ocurrio un error en la solicitud al servidor."));
+                await Navigation.PushModalAsync(new AlertasPersonalizadas("Error", "Ocurrió un error en la solicitud al servidor."));
             }
         }
 
@@ -132,7 +136,14 @@ namespace prototipoGPS
 
             try
             {
-                var response = await client.PostAsync("http://192.168.1.49:3000/validar-correo", content);
+                // Usar la clase Configuracion para obtener la IP y el puerto
+                string ip = Configuracion.Ip;
+                string puerto = Configuracion.Puerto;
+
+                // Construir la URL de conexión usando los valores de la clase ConfiguraciónConexion
+                string url = $"http://{ip}:{puerto}/validar-correo";
+                var response = await client.PostAsync(url, content);
+
                 if (response.IsSuccessStatusCode)
                 {
                     var responseContent = await response.Content.ReadAsStringAsync();
@@ -147,18 +158,6 @@ namespace prototipoGPS
 
             return false;
         }
-
-
-        //// Gesto para copiar el código al portapapeles
-        //private async void CopiarCodigoAlPortapapeles()
-        //{
-        //    if (!string.IsNullOrEmpty(codigoVerificacion))
-        //    {
-        //        await Clipboard.SetTextAsync(codigoVerificacion);
-        //        await DisplayAlert("Copiado", "El código ha sido copiado al portapapeles.", "OK");
-        //    }
-        //}
-
 
         // Método para generar un código de verificación alfanumérico de 8 caracteres
         private string GenerarCodigoVerificacion()

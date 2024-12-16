@@ -1,4 +1,5 @@
-﻿using System;
+﻿using prototipoGPS.Modelos;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,14 @@ namespace prototipoGPS
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage()); // Reemplaza 'MainPage' por el nombre de tu página principal  
+            // Cargar las preferencias de la configuración al iniciar la app
+            Configuracion.CargarDesdePreferencias();
+
+            // Cambiar la IP globalmente
+            Configuracion.Ip = "192.168.1.49"; 
+
+
+            MainPage = new NavigationPage(new MainPage()); 
         }
 
         protected override void OnStart()
