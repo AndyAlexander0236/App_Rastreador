@@ -2,32 +2,59 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="prototipoGPS.RegistroPertenencias"
-             BackgroundColor="White">
+             BackgroundColor="#f4f4f4">
 
     <ContentPage.Content>
-        <StackLayout Padding="20" Spacing="10">
+        <StackLayout Padding="20" Spacing="20">
             <!-- Título -->
-            <Label Text="Registros de Objetos"
-                   FontSize="24"
+            <Label Text="Registros de Objetos Rastreados"
+                   FontSize="26"
                    FontAttributes="Bold"
                    HorizontalOptions="Center"
-                   TextColor="Black" />
+                   TextColor="#333333" />
 
-            <!-- ListView para mostrar registros -->
+            <!-- Lista de objetos registrados -->
             <ListView x:Name="ListaRegistros"
-                      HasUnevenRows="True">
+                      HasUnevenRows="True"
+                      BackgroundColor="White"
+                      SeparatorColor="#E0E0E0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <!--<ViewCell>
-                           <StackLayout Orientation="Horizontal" Padding="10" Spacing="20">
-                               <Label Text="{Binding NombreObjeto}"
-                                      FontSize="16"
-                                      TextColor="Black" />
-                               <Label Text="{Binding FechaHora, StringFormat='{0:dd/MM/yyyy HH:mm}'}"
-                                      FontSize="16"
-                                       TextColor="Gray" />
-                           </StackLayout>
-                       </ViewCell>-->
+                        <ViewCell>
+                            <!-- Diseño de la celda -->
+                            <StackLayout Padding="15" Spacing="15">
+                                <Frame HasShadow="True" BorderColor="#DDDDDD" CornerRadius="10" Padding="10" BackgroundColor="White">
+                                    <StackLayout>
+                                        <!-- Fila para Nombre y Fecha/Hora (Encabezados) -->
+                                        <StackLayout Orientation="Horizontal" Spacing="10" Padding="0">
+                                            <Label Text="Nombre del Objeto"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#4A4A4A"
+                                                   HorizontalOptions="StartAndExpand" />
+                                            <Label Text="Fecha y Hora"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#4A4A4A"
+                                                   HorizontalOptions="StartAndExpand" />
+                                        </StackLayout>
+
+                                        <!-- Fila para los Datos Registrados -->
+                                        <StackLayout Orientation="Horizontal" Spacing="10" Padding="0">
+                                            <Label Text="{Binding NombreObjeto}"
+                                                   FontSize="16"
+                                                   TextColor="#4A4A4A"
+                                                   HorizontalOptions="StartAndExpand" />
+                                            <Label Text="{Binding FechaHora, StringFormat='{0:dd/MM/yyyy HH:mm}'}"
+       FontSize="14"
+       TextColor="#7F7F7F"
+       HorizontalOptions="End" />
+
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

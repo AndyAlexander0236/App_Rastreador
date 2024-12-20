@@ -75,23 +75,7 @@
                 <!-- Color de texto negro -->
             </Frame>
 
-            <!-- Selector de sector -->
-            
-            <!--<Frame BackgroundColor="#d8d8d8" 
-                       CornerRadius="20" 
-                       Padding="5" 
-                       HasShadow="False" 
-                      WidthRequest="100" 
-                       Margin="40,60,20,0">
-                <Picker Title="Escoja su sector" TitleColor="Black" BackgroundColor="Transparent" TextColor="Black">
-                   <Picker.ItemsSource>
-                       <x:Array Type="{x:Type x:String}">
-                           <x:String>Sangolqui</x:String>
-                           <x:String>Quito</x:String>
-                       </x:Array>
-                   </Picker.ItemsSource>
-              </Picker>
-           </Frame>-->
+     
 
             <BoxView HeightRequest="30" />
 
@@ -108,14 +92,15 @@
             <BoxView HeightRequest="30" />
 
             <!-- Botón para ir al registro de pertenencias -->
-            <!--<Button Text="Ver Registro de busquedas"  
+            <Button Text="Ver Registro de busquedas"  
              BackgroundColor="#a4efc4"   
              TextColor="Black"
-             CornerRadius="20"
-             FontAttributes="Bold"
-             HorizontalOptions="FillAndExpand"   
-             Margin="50,20,30,0"
-             Clicked="OnRegisterPClicked"/>-->
+              CornerRadius="20"
+              FontAttributes="Bold"
+              HorizontalOptions="FillAndExpand"   
+              Margin="50,20,30,0"
+              Clicked="OnRegisterPerClicked"/>
+            
 
         </StackLayout>
     </AbsoluteLayout>

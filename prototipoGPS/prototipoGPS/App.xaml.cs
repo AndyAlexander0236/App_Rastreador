@@ -16,6 +16,8 @@ namespace prototipoGPS
 
             // Cambiar la IP globalmente
             Configuracion.Ip = "192.168.1.49"; 
+            //Configuracion.Ip = "192.168.104.147";
+
 
 
             MainPage = new NavigationPage(new MainPage()); 

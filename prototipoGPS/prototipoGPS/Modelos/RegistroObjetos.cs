@@ -9,5 +9,6 @@ namespace prototipoGPS.Modelos
     {
         public string NombreObjeto { get; set; }
         public DateTime FechaHora { get; set; }
+
     }
 }

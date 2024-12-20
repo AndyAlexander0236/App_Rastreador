@@ -34,7 +34,8 @@ namespace prototipoGPS
                 var response = await client.GetAsync(url);
                 if (!response.IsSuccessStatusCode)
                 {
-                    await DisplayAlert("Error", "No se pudieron obtener los datos GPS.", "OK");
+                    await Navigation.PushModalAsync(new AlertasPersonalizadas(" A Ocurrido Un Error", "No se pudieron obtener los datos GPS"));
+
                     return;
                 }
 
@@ -43,7 +44,7 @@ namespace prototipoGPS
 
                 if (gpsData == null || !gpsData.Any())
                 {
-                    await DisplayAlert("Sin Datos", "No se encontraron datos GPS válidos.", "OK");
+                    await Navigation.PushModalAsync(new AlertasPersonalizadas(" Sin Datos ", "No se pudieron encontrar los datos del GPS "));
                     return;
                 }
 
@@ -75,7 +76,7 @@ namespace prototipoGPS
         {
             if (gpsData == null || !gpsData.Any())
             {
-                DisplayAlert("Sin datos", "No se encontraron registros GPS disponibles.", "OK");
+                Navigation.PushModalAsync(new AlertasPersonalizadas(" Sin Datos ", "No se pudieron encontrar los datos del GPS "));
                 return;
             }
 
@@ -137,7 +138,8 @@ namespace prototipoGPS
                 }
                 else
                 {
-                    await DisplayAlert("Error", "No se pudo obtener la ubicación actual.", "OK");
+                    await Navigation.PushModalAsync(new AlertasPersonalizadas(" A Ocurrido Un Error ", "No se pudo obtener la ubicacion actual"));
+
                 }
             }
             catch (Exception ex)
@@ -202,12 +204,14 @@ namespace prototipoGPS
                 var response = await client.GetAsync(url);
                 if (response.IsSuccessStatusCode)
                 {
-                    await DisplayAlert("Éxito", "Comando de sonido enviado al ESP32.", "OK");
+                    await Navigation.PushModalAsync(new AlertasPersonalizadas("Sonido Enviado", " Se a enviado correctamente el sonido al dispositivo"));
                 }
                 else
                 {
                     string responseContent = await response.Content.ReadAsStringAsync();
-                    await DisplayAlert("Error", $"No se pudo enviar el comando de sonido al ESP32. Respuesta: {responseContent}", "OK");
+                    await Navigation.PushModalAsync(new AlertasPersonalizadas("A Ocurrido Un Error ", "No se pudo enviar el sonido correctamente "));
+
+                    //await DisplayAlert("Error", $"No se pudo enviar el comando de sonido al ESP32. Respuesta: {responseContent}", "OK");
                 }
             }
             catch (Exception ex)
