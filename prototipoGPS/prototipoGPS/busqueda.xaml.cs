@@ -83,9 +83,7 @@ namespace prototipoGPS
             // Ordenar datos por fecha descendente
             gpsData = gpsData.OrderByDescending(d => d.Timestamp).ToList();
 
-            // Actualizar el ListView con los datos
-            gpsListView.ItemsSource = gpsData;
-
+           
             // Obtener la primera posición para centrar el mapa
             var firstData = gpsData.First();
             var position = new Position(firstData.Latitud, firstData.Longitud);

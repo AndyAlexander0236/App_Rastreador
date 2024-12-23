@@ -9,91 +9,99 @@
 
         <!-- Parte blanca con logo y título -->
         <Frame BackgroundColor="White"  
-               CornerRadius="150"  
+               CornerRadius="100"  
                Padding="0"  
                HasShadow="False"  
                VerticalOptions="Start"  
-               HeightRequest="420"   
-               Margin="-30,-120,-30,0">
-            <StackLayout Padding="0">
+               HeightRequest="340"   
+               Margin="0,-100,0,0">
+            <!-- Ajustar margen a 0 para mantener el espacio en la parte superior -->
+            <StackLayout Padding="20">
                 <!-- Logo de la app -->
-                <Image Source="Logo.png" HeightRequest="320" WidthRequest="100"  
-                       Margin="0,130,0,0" />
+                <Image Source="Logo.png" HeightRequest="220" WidthRequest="220"  
+                       Margin="0,100,0,0"
+                       HorizontalOptions="Center"   
+                       VerticalOptions="Center" />
 
                 <!-- Título de la app -->
                 <Label Text="TRACE"  
-                       FontSize="50"  
+                       FontSize="40"  
                        FontAttributes="Bold"  
                        TextColor="#FF4081"  
                        HorizontalOptions="Center"  
-                       Margin="0,-140,0,0"/>
+                       Margin="0,-80,0,0"/>
             </StackLayout>
         </Frame>
 
         <!-- Resto del formulario fuera del frame -->
-        <StackLayout Padding="20" Margin="0,250,0,0">
+        <StackLayout Padding="20" Margin="0,180,0,0">
             <Label Text="Iniciar Sesión"  
                 FontSize="30"   
                 HorizontalOptions="Center"   
                 VerticalOptions="Start"  
                 FontAttributes="Bold"   
                 TextColor="Black"   
-                Margin="0,60,0,20"/>
+                Margin="0,60,0,10"/>
 
-            <Label Text="CORREO" FontSize="16" TextColor="Black"  FontAttributes="Bold" Margin="40,0,0,0"/>
+
+            <!-- Ingreso del correo -->
+            <Label Text="CORREO" FontSize="16" TextColor="Black" FontAttributes="Bold" Margin="40,20,0,0"/>
             <Frame BackgroundColor="#d8d8d8"   
                 CornerRadius="20"  
-                Padding="5"  
+                Padding="0"  
                 HasShadow="False"   
-                Margin="40,0,40,0">
+                Margin="40,0">
                 <Grid>
-                    <Entry x:Name="CorreoEntry" 
-                           BackgroundColor="Transparent" 
+                    <Entry x:Name="CorreoEntry"   
+                           BackgroundColor="Transparent"
                            TextColor="Black" />
                     <!-- Placeholder con Binding -->
-                    <Label Text="Introduzca un correo"
-                           TextColor="Black"
-                           IsVisible="{Binding Source={x:Reference CorreoEntry}, Path=Text.Length, Converter={StaticResource InverseBoolConverter}}"
-                           VerticalOptions="Center"
+                    <Label Text="Introduzca un correo"  
+                           TextColor="Black"  
+                           IsVisible="{Binding Source={x:Reference CorreoEntry}, Path=Text.Length, Converter={StaticResource InverseBoolConverter}}"  
+                           VerticalOptions="Center"  
                            Margin="10,0" />
                 </Grid>
             </Frame>
 
-            <Label Text="CONTRASEÑA" FontSize="16" TextColor="Black"  FontAttributes="Bold" Margin="40,10,0,0" />
+            <!-- Ingreso de la contraseña -->
+            <Label Text="CONTRASEÑA" FontSize="16" TextColor="Black" FontAttributes="Bold" Margin="40,20,0,0"/>
             <Frame BackgroundColor="#d8d8d8"   
                 CornerRadius="20"  
-                Padding="5"  
+                Padding="0"  
                 HasShadow="False"   
-                Margin="40,0,40,0">
+                Margin="40,0">
                 <Grid>
-                    <Entry x:Name="ContrasenaEntry" 
-                           BackgroundColor="Transparent" 
-                           TextColor="Black"
+                    <Entry x:Name="ContrasenaEntry"   
+                           BackgroundColor="Transparent"   
+                           TextColor="Black"  
                            IsPassword="True" />
                     <!-- Placeholder con Binding -->
-                    <Label Text="Introduzca una contraseña"
-                           TextColor="Black"
-                           IsVisible="{Binding Source={x:Reference ContrasenaEntry}, Path=Text.Length, Converter={StaticResource InverseBoolConverter}}"
-                           VerticalOptions="Center"
+                    <Label Text="Introduzca una contraseña"  
+                           TextColor="Black"  
+                           IsVisible="{Binding Source={x:Reference ContrasenaEntry}, Path=Text.Length, Converter={StaticResource InverseBoolConverter}}"  
+                           VerticalOptions="Center"  
                            Margin="10,0" />
                 </Grid>
             </Frame>
 
+            <!-- Boton inicio de sesion -->
             <Button Text="Iniciar sesión"  
                     BackgroundColor="Black"  
                     TextColor="White"  
                     FontAttributes="Bold"  
                     CornerRadius="20"  
-                    HeightRequest="50"  
-                    Margin="60,20,60,-50" 
+                    HeightRequest="40"  
+                    Margin="40,20"   
                     Clicked="OnLoginClicked"/>
 
+            <!-- boton recuperar contraseña -->
             <Label Text="¿Olvidaste tu contraseña?"  
-       FontSize="16"  
-       TextColor="Black"  
-       Margin="0,60,0,0"
-       HorizontalOptions="Center"  
-       VerticalOptions="End">
+                   FontSize="16"  
+                   TextColor="Black"  
+                   Margin="0,0,0,0"  
+                   HorizontalOptions="Center"  
+                   VerticalOptions="End">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnRecuperarContrasenaTapped" />
                 </Label.GestureRecognizers>

@@ -1,57 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="prototipoGPS.MainPage">
+             x:Class="prototipoGPS.MainPage"
+             BackgroundColor="White">
 
-    <AbsoluteLayout>
+    <Grid RowSpacing="0"  
+          VerticalOptions="FillAndExpand"  
+          HorizontalOptions="FillAndExpand" >
 
-        <Image Source="Fondo_1.png" 
-       Aspect="AspectFill"
-       AbsoluteLayout.LayoutFlags="All"
-       AbsoluteLayout.LayoutBounds="0, 0, 1, 1" />
-    
-    <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="100">
 
-        <!-- Logo de la app -->
-        <Image Source="Logo.png" HeightRequest="200" WidthRequest="100"
-                Margin="-180,-60,-180,0"/>
-        <!-- Título de la app -->
-        <Label Text="TRACE"
-               FontSize="50"
-               FontAttributes="Bold"
-               TextColor="#FF4081"
-               HorizontalOptions="Center"
-               Margin="-180,-80,-180,530"/>
-            
+        <!-- Contenido Principal -->
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="10">
+            <!-- Logo -->
+            <Image Source="Logo.png"  
+                   HorizontalOptions="Center"  
+                   HeightRequest="220"  
+                   Margin="0,0,0,10" />
 
-        <!-- Botón de continuar -->
-        <Button Text="Continuar con Trace"
-        BackgroundColor="#d8d8d8"
-        TextColor="Black"
-        FontAttributes="Bold"
-        CornerRadius="20"
-        HeightRequest="50"
-        Margin="0,-240,0,20"
-        Clicked="OnContinueClicked" />
-        <!-- Evento Clicked -->
+            <!-- Título App -->
+            <Label Text="TRACE"  
+                   FontSize="40"  
+                   FontAttributes="Bold"  
+                   TextColor="#FF4081"  
+                   HorizontalOptions="Center"   
+                   VerticalOptions="Center"   
+                   Margin="0,-100,0,0" />
 
-        <Button Text="Registrarse"
-        BackgroundColor="#a4efc4"
-        TextColor="Black"
-        FontAttributes="Bold"
-        CornerRadius="20"
-        HeightRequest="50"
-        Margin="0,0,0,20"
-        Clicked="OnRegisterClicked" />
-        <!-- Evento Clicked -->
-        
-        <!-- Texto de créditos -->
-            <StackLayout VerticalOptions="End" HorizontalOptions="Center">
-                <Label Text="by ITQ" FontSize="12" FontAttributes ="Bold" TextColor="Black" HorizontalOptions="Center" />
-            <Label Text="Tec. Andy Logacho" FontSize="12" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" />
+            <!-- Ilustración -->
+            <Image Source="img_1.png"   
+                   HorizontalOptions="Center"  
+                   Aspect="AspectFit"   
+                   HeightRequest="300"   
+                   Margin="0,0,0,-80" />
+
+            <!-- Botones -->
+            <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center" Margin="10">
+                <Button Text="CONTINUAR CON TRACE"  
+                        BackgroundColor="#d8d8d8"  
+                        TextColor="Black"  
+                        FontAttributes="Bold"  
+                        CornerRadius="20"  
+                        HeightRequest="45"  
+                        WidthRequest="300"  
+                        Margin="40,40,40,10"  
+                        Clicked="OnContinueClicked" />
+
+                <Button Text="REGISTRARSE"  
+                        BackgroundColor="#a4efc4"  
+                        TextColor="Black"  
+                        FontAttributes="Bold"  
+                        CornerRadius="20"  
+                        HeightRequest="45"  
+                        WidthRequest="300"  
+                        Margin="40,0,40,5"  
+                        Clicked="OnRegisterClicked"/>
             </StackLayout>
 
-    </StackLayout>
-    </AbsoluteLayout>
-
-</ContentPage>
+            <!-- Créditos -->
+            <StackLayout VerticalOptions="End" HorizontalOptions="Center" Margin="10">
+                <Label Text="by ITQ"  
+                       FontSize="12"  
+                       FontAttributes="Bold"  
+                       TextColor="Black"  
+                       HorizontalOptions="Center" />
+                <Label Text="Tec. Andy Logacho"  
+                       FontSize="12"  
+                       FontAttributes="Bold"  
+                       TextColor="Black"  
+                       HorizontalOptions="Center" />
+            </StackLayout>
+        </StackLayout>
+    </Grid>
+</ContentPage>  

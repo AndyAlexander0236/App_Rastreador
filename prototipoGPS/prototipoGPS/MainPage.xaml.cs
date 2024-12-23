@@ -15,22 +15,16 @@ namespace prototipoGPS
             InitializeComponent();
         }
 
-        // Evento para el botón "Continuar con Trace"
+        // Evento para el botón "Continuar con Trace"  
         private async void OnContinueClicked(object sender, EventArgs e)
-        {        
+        {
             await Navigation.PushAsync(new login());
-
         }
 
-        // Evento para el botón "Registrarse"
+        // Evento para el botón "Registrarse"  
         private async void OnRegisterClicked(object sender, EventArgs e)
         {
-           
             await Navigation.PushAsync(new Registro());
-        
         }
-
-        
-
     }
 }

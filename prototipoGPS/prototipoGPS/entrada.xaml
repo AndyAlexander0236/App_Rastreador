@@ -3,45 +3,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="prototipoGPS.entrada">
 
-    <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="Center" Spacing="20" BackgroundColor="White">
+    <Grid BackgroundColor="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <!-- Espacio para el titulo -->
+            <RowDefinition Height="Auto" />
+            <!-- Espacio para el boton -->
+            <RowDefinition Height="*"/>
+            <!-- Espacio entre el boton y la imagen-->
+        </Grid.RowDefinitions>
+
         <!-- Título -->
-        <Label Text="BIENVENIDO"   
-               FontSize="30"   
-               TextColor="Black"  
-               FontAttributes="Bold"  
-               HorizontalOptions="Center" 
-               Margin="0,50,0,0"/>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+            <Label Text="BIENVENIDO"   
+                   FontSize="30"   
+                   TextColor="Black"  
+                   FontAttributes="Bold"  
+                   HorizontalOptions="Center" />
 
-        <Label Text="A"   
-               FontSize="30"  
-               TextColor="Black"  
-               FontAttributes="Bold"  
-               HorizontalOptions="Center" />
+            <Label Text="A"   
+                   FontSize="30"  
+                   TextColor="Black"  
+                   FontAttributes="Bold"   
+                   HorizontalOptions="Center" />
 
-        <Label Text="TRACE"   
-               FontSize="30"  
-               TextColor="Black"  
-               FontAttributes="Bold"  
-               HorizontalOptions="Center" />
-
-        <!-- Espacio entre el título y el botón -->
-        <BoxView HeightRequest="10" />
+            <Label Text="TRACE"   
+                   FontSize="30"  
+                   TextColor="Black"  
+                   FontAttributes="Bold"   
+                   HorizontalOptions="Center" />
+        </StackLayout>
 
         <!-- Botón de Continuar -->
-        <Button Text="Continuar"   
+        <Button Text="CONTINUAR"   
                 BackgroundColor="#a4efc4"  
                 TextColor="Black"  
                 FontSize="18"  
-                CornerRadius="10"  
+                CornerRadius="20"  
                 FontAttributes="Bold"   
-                HeightRequest="50"
-                Margin="40,20"
-                 Clicked="OninicioClicked"/>
+                HeightRequest="50"  
+                Margin="40,20"  
+                HorizontalOptions="FillAndExpand"  
+                VerticalOptions="Start"  
+                Grid.Row="1"  
+                Clicked="OninicioClicked"/>
 
         <!-- Imagen -->
         <Image Source="Fondo_3.png"   
-               HorizontalOptions="Center"  
-               VerticalOptions="EndAndExpand"
-               Margin="40,0,40,60"/>
-    </StackLayout>
+               HorizontalOptions="FillAndExpand"  
+               VerticalOptions="FillAndExpand"  
+               Aspect="AspectFit"  
+               Grid.Row="2"
+               Margin="0,0,0,40"/>
+    </Grid>
 </ContentPage>  

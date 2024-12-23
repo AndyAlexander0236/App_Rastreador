@@ -6,8 +6,10 @@ namespace prototipoGPS.Modelos
 {
     public class GpsData
     {
-        public float Latitud { get; set; }
-        public float Longitud { get; set; }
+ 
+
+        public double Latitud { get; set; }
+        public double Longitud { get; set; }
         public DateTime Timestamp { get; set; }
     }
 }

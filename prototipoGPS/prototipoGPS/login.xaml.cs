@@ -55,6 +55,7 @@ namespace prototipoGPS
                     ContrasenaEntry.Text = string.Empty;
 
                     // Mostrar mensaje de éxito y navegar a la siguiente página
+
                     await Navigation.PushModalAsync(new AlertasPersonalizadas("Inicio de Sesión Exitosa", "Te damos la bienvenida"));
                     await Navigation.PushAsync(new entrada());
                 }

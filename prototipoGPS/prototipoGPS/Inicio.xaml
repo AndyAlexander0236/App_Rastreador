@@ -37,7 +37,7 @@
                        FontAttributes="Bold"
                        HorizontalOptions="Center"   
                        VerticalOptions="Start"   
-                       Margin="20,30,0,10" />
+                       Margin="20,50,0,10" />
 
             <Label Text="tus pertenencias"  
                        FontSize="24"
@@ -50,27 +50,29 @@
             <!-- Entrada para el nombre del usuario precargado-->
             <Frame BackgroundColor="#d8d8d8"   
                        CornerRadius="20"  
-                       Padding="5"  
+                       Padding="0"  
                        HasShadow="False"   
                        Margin="40,60,20,0">
                 <Entry x:Name="UserNameEntry" 
                            BackgroundColor="Transparent" 
                            IsReadOnly="True"
-                           TextColor="Black" />
+                           TextColor="Black" 
+                       Margin="10,0"/>
                 <!-- Color de texto negro -->
             </Frame>
 
             <!-- Entrada para el nombre del objeto -->
             <Frame BackgroundColor="#d8d8d8"   
                         CornerRadius="20"  
-                        Padding="5"  
+                        Padding="0"  
                         HasShadow="False"   
                         Margin="40,60,20,0">
                 <Entry x:Name="NombreObjetoEntry" 
                  Placeholder="Ingrese el nombre del objeto" 
                  BackgroundColor="Transparent" 
                  PlaceholderColor="Black" 
-                 TextColor="Black" />
+                 TextColor="Black" 
+                       Margin="10,0"/>
 
                 <!-- Color de texto negro -->
             </Frame>
@@ -100,7 +102,18 @@
               HorizontalOptions="FillAndExpand"   
               Margin="50,20,30,0"
               Clicked="OnRegisterPerClicked"/>
-            
+
+
+            <!-- Detalle verde de la parte final de la pantalla -->
+            <Frame BackgroundColor="#a4efc4"  
+       CornerRadius="100"  
+       Padding="0"  
+       HasShadow="False"  
+       VerticalOptions="End"  
+       HeightRequest="200"  
+       Margin="-45,60,-60,0">
+               
+            </Frame>
 
         </StackLayout>
     </AbsoluteLayout>

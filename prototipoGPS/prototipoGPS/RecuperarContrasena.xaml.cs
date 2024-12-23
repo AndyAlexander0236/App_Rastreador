@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using Xamarin.Essentials;
-using prototipoGPS.Modelos; 
+using prototipoGPS.Modelos;
 
 namespace prototipoGPS
 {
@@ -26,7 +26,7 @@ namespace prototipoGPS
 
             if (string.IsNullOrEmpty(correo))
             {
-                await Navigation.PushModalAsync(new AlertasPersonalizadas("Correo requerido", "Por favor, ingresa una dirección de correo para continuar"));
+                await DisplayAlert("Error", "Por favor ingresa un correo electrónico válido", "OK");
                 return;
             }
 
@@ -35,8 +35,7 @@ namespace prototipoGPS
 
             if (!correoValido)
             {
-                await Navigation.PushModalAsync(new AlertasPersonalizadas("Correo no encontrado", "No pudimos encontrar este correo en nuestro sistema. " +
-                                                                              "Por favor, verifica la dirección ingresada o regístrate si aún no lo has hecho"));
+                await DisplayAlert("Correo no encontrado", "No pudimos encontrar este correo en nuestro sistema. Verifica la dirección ingresada o regístrate si es necesario.", "OK");
                 return;
             }
 
@@ -66,7 +65,7 @@ namespace prototipoGPS
                 FormularioCambioContrasena.IsVisible = true;
                 NuevaContrasenaEntry.IsEnabled = true;
                 NotificacionLabel.Text = "Código correcto. Ahora puede cambiar la contraseña.";
-                NotificacionLabel.TextColor = Color.Green;
+                NotificacionLabel.TextColor = Color.Black;
             }
             else
             {
@@ -87,7 +86,7 @@ namespace prototipoGPS
 
             if (string.IsNullOrEmpty(nuevaContrasena))
             {
-                await Navigation.PushModalAsync(new AlertasPersonalizadas("Contraseña requerida", "Por favor introduce tu nueva contraseña para continuar"));
+                await DisplayAlert("Error", "Por favor ingresa una nueva contraseña.", "OK");
                 return;
             }
 
@@ -104,72 +103,77 @@ namespace prototipoGPS
 
             try
             {
-                // Construir la URL de conexión usando los valores de la clase ConfiguraciónConexion
+                // Construir la URL de conexión usando los valores de la clase Configuración
                 string url = $"http://{ip}:{puerto}/cambiar-contrasena";
                 var response = await client.PostAsync(url, content);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    await Navigation.PushModalAsync(new AlertasPersonalizadas("Actualizacion Exitosa", "Contraseña actualizada correctamente"));
+                    await DisplayAlert("Actualización Exitosa", "Contraseña actualizada correctamente.", "OK");
                     await Navigation.PopAsync();  // Volver al inicio de sesión
                 }
                 else
                 {
-                    await Navigation.PushModalAsync(new AlertasPersonalizadas("Actualizacion fallida", "No fue posible actualizar la contraseña. " +
-                                                                              "Por favor inténtalo nuevamente"));
+                    await DisplayAlert("Error", "No fue posible actualizar la contraseña. Intenta nuevamente.", "OK");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al actualizar la contraseña: " + ex.Message);
-                await Navigation.PushModalAsync(new AlertasPersonalizadas("Error", "Ocurrió un error en la solicitud al servidor."));
+                await DisplayAlert("Error", "Hubo un problema con la conexión al servidor.", "OK");
             }
         }
 
-        // Método para validar el correo en el servidor Node.js
+        // Método para validar el correo
         private async Task<bool> ValidarCorreo(string correo)
         {
-            var client = new HttpClient();
-            var requestBody = new { correo = correo };
-            var json = JsonConvert.SerializeObject(requestBody);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
             try
             {
-                // Usar la clase Configuracion para obtener la IP y el puerto
-                string ip = Configuracion.Ip;
-                string puerto = Configuracion.Puerto;
+                // Construir la URL con el correo como parámetro de consulta
+                string url = $"http://{Configuracion.Ip}:{Configuracion.Puerto}/validar-correo?correo={correo}";
 
-                // Construir la URL de conexión usando los valores de la clase ConfiguraciónConexion
-                string url = $"http://{ip}:{puerto}/validar-correo";
-                var response = await client.PostAsync(url, content);
-
-                if (response.IsSuccessStatusCode)
+                // Crear cliente HTTP y realizar la solicitud GET
+                using (var client = new HttpClient())
                 {
-                    var responseContent = await response.Content.ReadAsStringAsync();
-                    JObject result = JObject.Parse(responseContent);
-                    return result["isValid"].ToObject<bool>();
+                    var response = await client.GetAsync(url);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Leer la respuesta JSON del servidor
+                        var jsonResponse = await response.Content.ReadAsStringAsync();
+                        var jsonObject = JObject.Parse(jsonResponse);
+
+                        // Verificar si el correo existe
+                        return jsonObject["existe"].Value<bool>();
+                    }
+                    else
+                    {
+                        // Manejar errores HTTP (4xx, 5xx)
+                        Console.WriteLine($"Error en la solicitud: {response.StatusCode}");
+                        return false;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al validar correo: " + ex.Message);
+                // Manejo de errores de conexión u otros problemas
+                Console.WriteLine($"Error al validar correo: {ex.Message}");
+                return false;
             }
-
-            return false;
         }
 
-        // Método para generar un código de verificación alfanumérico de 8 caracteres
+        // Método para generar el código de verificación
         private string GenerarCodigoVerificacion()
         {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             var random = new Random();
-            var code = new char[8];
-            for (int i = 0; i < code.Length; i++)
+            const string caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            char[] codigo = new char[8];
+
+            for (int i = 0; i < 8; i++)
             {
-                code[i] = chars[random.Next(chars.Length)];
+                codigo[i] = caracteres[random.Next(caracteres.Length)];
             }
-            return new string(code);
+
+            return new string(codigo);
         }
     }
 }
