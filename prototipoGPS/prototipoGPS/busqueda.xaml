@@ -5,66 +5,66 @@
              x:Class="prototipoGPS.busqueda"
              BackgroundColor="White">
 
+
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <!-- Etiqueta principal -->
-            <Label Text="Apartado del mapa de GPS"
-                   FontSize="Large"
-                   FontAttributes="Bold"
-                   VerticalOptions="CenterAndExpand" 
-                   HorizontalOptions="CenterAndExpand" 
-                   Margin="0,-45,0,0"/>
-
+          
             <!-- Mapa de Google -->
-            <!--<maps:Map x:Name="googleMap" 
-                      HeightRequest="300"
-                      WidthRequest="450"
-                      IsShowingUser="True"
-                      Margin="0,10,0,10" />-->
-
-
             <maps:Map x:Name="googleMap"
           IsShowingUser="True"
           HorizontalOptions="FillAndExpand"
           VerticalOptions="FillAndExpand"
-          Margin="0,20,0,0" />
+          HeightRequest="300"
+          Margin="0,0,0,0" />
 
+
+ 
 
             <!-- Botón para comenzar a obtener datos GPS en tiempo real -->
-            <Button x:Name="StartButton"
-                    Text="Iniciar Seguimiento"
-                    BackgroundColor="#a4efc4"   
-                    TextColor="Black"
-                    CornerRadius="20"
-                    FontAttributes="Bold"
-                    HorizontalOptions="FillAndExpand"   
-                    Margin="30,10,30,5"
-                    Clicked="OnStartButtonClicked" />
+            <Button x:Name="BotonIniciar"  
+    Text="Iniciar Seguimiento"  
+    BackgroundColor="#a4efc4"   
+    TextColor="Black"  
+    CornerRadius="20"  
+    FontAttributes="Bold"  
+    HorizontalOptions="FillAndExpand"   
+    Margin="30,10,30,5"  
+    Clicked="OnBotonIniciarClicked" />
+
+
 
             <!-- Botón para detener la obtención de datos GPS -->
-            <Button x:Name="StopButton"
-                    Text="Detener Seguimiento" 
-                    BackgroundColor="#ef9fa4"   
-                    TextColor="Black"
-                    CornerRadius="20"
-                    FontAttributes="Bold"
-                    HorizontalOptions="FillAndExpand"   
-                    Margin="30,10,30,5"
-                    Clicked="OnStopButtonClicked"
-                    IsEnabled="False" />
+            <Button x:Name="BotonParar"  
+Text="Detener Seguimiento"   
+BackgroundColor="#ef9fa4"   
+TextColor="Black"  
+CornerRadius="20"  
+FontAttributes="Bold"  
+HorizontalOptions="FillAndExpand"   
+Margin="30,10,30,5"  
+Clicked="OnStopButtonClicked"  
+IsEnabled="False" />
 
             <!-- Botón para mandar sonido -->
-            <Button x:Name="PlaySoundButton"
-                    Text="Mandar Sonido"
-                    BackgroundColor="#a4b9ef"
-                    TextColor="Black"
-                    CornerRadius="20"
-                    FontAttributes="Bold"
-                    HorizontalOptions="FillAndExpand"
-                    Margin="30,10,30,10"
+            <Button x:Name="BotonSonido"  
+                    Text="Mandar Sonido"  
+                    BackgroundColor="#a4b9ef"  
+                    TextColor="Black"  
+                    CornerRadius="20"  
+                    FontAttributes="Bold"  
+                    HorizontalOptions="FillAndExpand"  
+                    Margin="30,10,30,10"  
                     Clicked="OnPlaySoundButtonClicked" />
 
-          
+           <!-- Label para mostrar la dirección -->
+<Label x:Name="DireccionLabel"  
+       Text="Dirección: "  
+       FontSize="Medium"  
+       TextColor="Black"  
+       VerticalOptions="CenterAndExpand"  
+       HorizontalOptions="CenterAndExpand"  
+       Margin="0,0,0,0" />
+
         </StackLayout>
     </ContentPage.Content>
-</ContentPage>
+</ContentPage>  

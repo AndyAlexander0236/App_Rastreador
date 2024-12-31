@@ -1,24 +1,28 @@
-﻿<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.prototipogps" android:installLocation="auto">
+﻿<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:versionCode="1"
+    android:versionName="1.0"
+    package="com.companyname.prototipogps"
+    android:installLocation="auto">
+
 	<!-- Permisos necesarios -->
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-	<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-	
+	<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" tools:ignore="background_location" />
 
-
-
-	<!-- Clave API de Google -->
 	<application
         android:label="Trace"
         android:theme="@style/MainTheme"
         android:usesCleartextTraffic="true"
         android:icon="@drawable/icono">
 
+		<!-- Clave API de Google -->
 		<meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAoeT8Y0mIoRA_1dFl7uk4k4MUEnVtzlpI" />
+
 	</application>
 
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
