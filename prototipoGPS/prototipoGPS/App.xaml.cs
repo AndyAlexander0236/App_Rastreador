@@ -1,5 +1,6 @@
 ﻿using prototipoGPS.Modelos;
 using System;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,7 +26,21 @@ namespace prototipoGPS
 
         protected override void OnStart()
         {
+            // Verificar si el usuario ya inició sesión
+            bool isLoggedIn = Preferences.Get("IsLoggedIn", false);
+
+            if (isLoggedIn)
+            {
+                // Redirigir a la pantalla de entrada
+                MainPage = new NavigationPage(new entrada());
+            }
+            else
+            {
+                // Mostrar la pantalla principal
+                MainPage = new NavigationPage(new MainPage());
+            }
         }
+
 
         protected override void OnSleep()
         {

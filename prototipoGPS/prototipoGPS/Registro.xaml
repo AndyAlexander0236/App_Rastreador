@@ -23,15 +23,17 @@
                        FontSize="30"
                        FontAttributes="Bold"
                        TextColor="Black"
+                       Margin="20,0,20,0"
                        HorizontalOptions="Center"/>
 
                 <!-- Formulario -->
                 <StackLayout Spacing="20">
                     <!-- Nombre -->
-                    <Label Text="NOMBRE" FontSize="18" TextColor="Black" FontAttributes="Bold" />
+                    <Label Text="NOMBRE" FontSize="18" TextColor="Black" FontAttributes="Bold" Margin="20,0,20,0"/>
                     <Frame BackgroundColor="#d8d8d8"
                            CornerRadius="20"
                            Padding="0"
+                           Margin="20,0,20,0"
                            HasShadow="False">
                         <Entry x:Name="NombreEntry"
                                Placeholder="Ingrese su nombre"
@@ -41,10 +43,11 @@
                     </Frame>
 
                     <!-- Correo -->
-                    <Label Text="CORREO" FontSize="18" TextColor="Black" FontAttributes="Bold" />
+                    <Label Text="CORREO" FontSize="18" TextColor="Black" FontAttributes="Bold" Margin="20,0,20,0" />
                     <Frame BackgroundColor="#d8d8d8"
                            CornerRadius="20"
                            Padding="0"
+                           Margin="20,0,20,0"
                            HasShadow="False">
                         <Entry x:Name="CorreoEntry"
                                Placeholder="Introduzca un correo"
@@ -54,10 +57,11 @@
                     </Frame>
 
                     <!-- Contraseña -->
-                    <Label Text="CONTRASEÑA" FontSize="18" TextColor="Black" FontAttributes="Bold" />
+                    <Label Text="CONTRASEÑA" FontSize="18" TextColor="Black" FontAttributes="Bold" Margin="20,0,20,0" />
                     <Frame BackgroundColor="#d8d8d8"
                            CornerRadius="20"
                            Padding="0"
+                           Margin="20,0,20,0"
                            HasShadow="False">
                         <Entry x:Name="ContrasenaEntry"
                                Placeholder="Introduzca una contraseña"
@@ -85,6 +89,26 @@
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:Int32}">
                                     <!-- Añade más años si es necesario -->
+                                    <x:Int32>1970</x:Int32>
+                                    <x:Int32>1971</x:Int32>
+                                    <x:Int32>1972</x:Int32>
+                                    <x:Int32>1973</x:Int32>
+                                    <x:Int32>1974</x:Int32>
+                                    <x:Int32>1975</x:Int32>
+                                    <x:Int32>1976</x:Int32>
+                                    <x:Int32>1977</x:Int32>
+                                    <x:Int32>1978</x:Int32>
+                                    <x:Int32>1979</x:Int32>
+                                    <x:Int32>1980</x:Int32>
+                                    <x:Int32>1981</x:Int32>
+                                    <x:Int32>1982</x:Int32>
+                                    <x:Int32>1983</x:Int32>
+                                    <x:Int32>1984</x:Int32>
+                                    <x:Int32>1985</x:Int32>
+                                    <x:Int32>1986</x:Int32>
+                                    <x:Int32>1987</x:Int32>
+                                    <x:Int32>1988</x:Int32>
+                                    <x:Int32>1989</x:Int32>
                                     <x:Int32>1990</x:Int32>
                                     <x:Int32>1991</x:Int32>
                                     <x:Int32>1992</x:Int32>
@@ -202,7 +226,7 @@
                         HeightRequest="45"
                         CornerRadius="20"
                         Clicked="OnRegisterClicked" 
-                        Margin="0,20,0,0"/>
+                        Margin="20,20"/>
             </StackLayout>
         </ScrollView>
     </Grid>

@@ -135,8 +135,8 @@ namespace prototipoGPS
             {
                 string ip = Configuracion.Ip; // IP configurada en Configuración.cs
                 string puerto = Configuracion.Puerto; // Puerto configurado en Configuración.cs
-                //string url = $"http://{ip}:{puerto}/play-sound"; // Ruta del servidor que activará el sonido en el ESP32
-                string url = $"http://192.168.1.37:80/play-sound"; // Aquí puedes dejar la URL del ESP32 para enviar el comando
+                string url = $"http://{ip}:{puerto}/play-sound"; // Ruta del servidor que activará el sonido en el ESP32
+                //string url = $"http://192.168.1.37:80/play-sound"; // Aquí puedes dejar la URL del ESP32 para enviar el comando
 
                 var response = await _httpClient.GetAsync(url);
                 if (response.IsSuccessStatusCode)

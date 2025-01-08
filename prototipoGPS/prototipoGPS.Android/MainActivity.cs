@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.OS;
 using Android.Gms.Maps;
 using Xamarin.Forms.Maps;
+using FFImageLoading.Forms.Platform; // Agrega esta importación
 
 namespace prototipoGPS.Droid
 {
@@ -14,6 +15,9 @@ namespace prototipoGPS.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            // Inicialización de FFImageLoading con enableFastRenderer=true
+            CachedImageRenderer.Init(true); // Cambiado para incluir el parámetro
 
             // Inicialización de Xamarin Essentials y Maps
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

@@ -16,7 +16,7 @@
        IsVisible="False"
        HorizontalOptions="Center" 
        VerticalOptions="Start" 
-       Margin="-5,-15,0,10"
+       Margin="-5,-15,20,10"
        HasShadow="True"
        WidthRequest="180">
 
@@ -37,7 +37,7 @@
                        FontAttributes="Bold"
                        HorizontalOptions="Center"   
                        VerticalOptions="Start"   
-                       Margin="20,50,0,10" />
+                       Margin="20,45,0,10" />
 
             <Label Text="tus pertenencias"  
                        FontSize="24"
@@ -111,7 +111,7 @@
        HasShadow="False"  
        VerticalOptions="End"  
        HeightRequest="200"  
-       Margin="-45,60,-60,0">
+       Margin="-45,70,-60,0">
                
             </Frame>
 

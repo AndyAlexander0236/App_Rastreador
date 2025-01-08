@@ -17,6 +17,14 @@ namespace prototipoGPS
         {
             InitializeComponent();
             client = new HttpClient();
+
+            // Verificar si el usuario ya inició sesión
+            bool isLoggedIn = Preferences.Get("IsLoggedIn", false);
+            if (isLoggedIn)
+            {
+                // Si está logueado, navegar automáticamente a la página de entrada
+                Navigation.PushAsync(new entrada());
+            }
         }
 
         // Evento del botón de inicio de sesión
@@ -47,7 +55,8 @@ namespace prototipoGPS
                     var result = await response.Content.ReadAsStringAsync();
                     var user = JsonConvert.DeserializeObject<User>(result); // Asumiendo que recibes los datos del usuario, incluyendo su nombre
 
-                    // Guardar el nombre en las preferencias locales
+                    // Guardar el estado de inicio de sesión y el nombre del usuario en las preferencias locales
+                    Preferences.Set("IsLoggedIn", true);
                     Preferences.Set("userNombre", user.nombre);
 
                     // Limpiar los campos de texto
@@ -55,7 +64,6 @@ namespace prototipoGPS
                     ContrasenaEntry.Text = string.Empty;
 
                     // Mostrar mensaje de éxito y navegar a la siguiente página
-
                     await Navigation.PushModalAsync(new AlertasPersonalizadas("Inicio de Sesión Exitosa", "Te damos la bienvenida"));
                     await Navigation.PushAsync(new entrada());
                 }

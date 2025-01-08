@@ -50,7 +50,7 @@
                 CornerRadius="20"  
                 Padding="0"  
                 HasShadow="False"   
-                Margin="40,0">
+                Margin="40,-2">
                 <Grid>
                     <Entry x:Name="CorreoEntry"   
                            BackgroundColor="Transparent"

@@ -10,7 +10,7 @@
 
 
         <!-- Contenido Principal -->
-        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="10">
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="5">
             <!-- Logo -->
             <Image Source="Logo.png"  
                    HorizontalOptions="Center"  
@@ -31,7 +31,7 @@
                    HorizontalOptions="Center"  
                    Aspect="AspectFit"   
                    HeightRequest="300"   
-                   Margin="0,0,0,-80" />
+                   Margin="0,-20,0,-80" />
 
             <!-- Botones -->
             <StackLayout Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="Center" Margin="10">
@@ -57,7 +57,7 @@
             </StackLayout>
 
             <!-- Créditos -->
-            <StackLayout VerticalOptions="End" HorizontalOptions="Center" Margin="10">
+            <StackLayout VerticalOptions="End" HorizontalOptions="Center" Margin="0">
                 <Label Text="by ITQ"  
                        FontSize="12"  
                        FontAttributes="Bold"  

@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"  
              x:Class="prototipoGPS.entrada">
 
     <Grid BackgroundColor="White">
@@ -14,25 +15,58 @@
         </Grid.RowDefinitions>
 
         <!-- Título -->
-        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="0">
             <Label Text="BIENVENIDO"   
-                   FontSize="30"   
+                   FontSize="28"   
                    TextColor="Black"  
                    FontAttributes="Bold"  
                    HorizontalOptions="Center" />
 
             <Label Text="A"   
-                   FontSize="30"  
+                   FontSize="28"  
                    TextColor="Black"  
                    FontAttributes="Bold"   
                    HorizontalOptions="Center" />
 
             <Label Text="TRACE"   
-                   FontSize="30"  
+                   FontSize="28"  
                    TextColor="Black"  
                    FontAttributes="Bold"   
                    HorizontalOptions="Center" />
+
+
+            <!-- Perfil redondo -->
+            <StackLayout x:Name="PerfilStackLayout" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,5,0,-10">
+                <Frame CornerRadius="100" 
+           HeightRequest="150" 
+           WidthRequest="150" 
+           HasShadow="True"
+           BackgroundColor="#e6e6e6"
+           Padding="0">
+                    <!-- Este padding negativo hace que el GIF sobresalga -->
+                    <ff:CachedImage Source="Fondo_Perfil.gif"   
+                        Aspect="AspectFill"
+                        HeightRequest="90" 
+                        WidthRequest="90">
+                        <ff:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnPerfilTapped" />
+                        </ff:CachedImage.GestureRecognizers>
+                    </ff:CachedImage>
+                </Frame>
+                <!-- Botones que aparecen al tocar el perfil -->
+                <StackLayout x:Name="BotonesPerfil" IsVisible="False">
+                    <Button Text="Salir" 
+                BackgroundColor="#f07d7d" 
+                TextColor="Black" 
+                FontAttributes="Bold" 
+                CornerRadius="20"
+                HeightRequest="35" 
+                Margin="0,-5,0,0"
+                Clicked="OnSalirClicked" />
+                </StackLayout>
+            </StackLayout>
         </StackLayout>
+
 
         <!-- Botón de Continuar -->
         <Button Text="CONTINUAR"   
@@ -41,8 +75,8 @@
                 FontSize="18"  
                 CornerRadius="20"  
                 FontAttributes="Bold"   
-                HeightRequest="50"  
-                Margin="40,20"  
+                HeightRequest="40"  
+                Margin="40,20,40,0"  
                 HorizontalOptions="FillAndExpand"  
                 VerticalOptions="Start"  
                 Grid.Row="1"  
@@ -54,6 +88,6 @@
                VerticalOptions="FillAndExpand"  
                Aspect="AspectFit"  
                Grid.Row="2"
-               Margin="0,0,0,40"/>
+               Margin="0,10,0,20"/>
     </Grid>
 </ContentPage>  
